@@ -49,9 +49,9 @@ const questionSchema = new mongoose.Schema({
 });
 
 const Question = mongoose.model('Question', questionSchema, 'questions');
-
+/*
 // Beispiel für eine Single-Choice-Frage
-/*const singleChoiceQuestion = new Question({
+const singleChoiceQuestion = new Question({
     question: 'Was ist die Hauptstadt von Frankreich?',
     type: 'single-choice',
     answers: [
@@ -68,7 +68,7 @@ const numericQuestion = new Question({
     type: 'numeric',
     correctNumericAnswer: 7
 });
-*/
+
 // Weitere Beispiele für verschiedene Fragetypen können hinzugefügt werden
 
 // Speichern der Fragen in der Datenbank
@@ -86,4 +86,15 @@ numericQuestion.save()
     })
     .catch(error => {
         console.error(error);
-    });
+    }); */
+
+Question.find({})
+    .then((data) => {
+        
+        const dataObject = data;
+        console.log(dataObject)
+        console.log(dataObject[0].answers)
+    })
+    .catch((err) => {
+        console.log('Error: ', err)
+    })
