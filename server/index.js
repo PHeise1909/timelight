@@ -7,9 +7,20 @@ const mongoose = require('mongoose');
 const connectDB = require('./config/database');
 
 const app = express();
+app.use(cors());
 const PORT = 3500;
 
 connectDB();
+
+app.get('/api/questions', async (req, res) => {
+    try {
+      const questions = await Question.find({});
+      res.json(questions);
+    } catch (error) {
+      console.error('Error fetching questions:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 
 mongoose.connection.once('open', () => {
     console.log('DB connected')
@@ -41,7 +52,6 @@ const questionSchema = new mongoose.Schema({
     answers: [answerSchema],
     correctNumericAnswer: {
         type: Number,
-        // Legt fest, dass dieses Feld nur für den Fragetyp 'numeric' erforderlich ist
         required: function() {
             return this.type === 'numeric';
         }
