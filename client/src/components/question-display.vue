@@ -1,5 +1,5 @@
 <template>
-    <div> {{ this.questions[0].question }}</div>
+    <div> {{ this.questions[1].question }}</div>
   </template>
   
   <style scoped>
