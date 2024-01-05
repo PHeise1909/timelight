@@ -1,15 +1,16 @@
 const User = require('../models/user');
 
-const createUser = async (req, res) => {
+const setUser = async (req, res) => {
     try{
-        const userData = req.body;
-        const newUser = new User(userData);
-        const savedUser = await newUser.save();
-        res.json(savedUser);
-    } catch (error){
-        console.error('Error creating User:', error);
-        res.status(500).json({error: 'Internal Server Error'});
-    }
-};
+        console.log("Save user");
 
-module.exports = { createUser };
+        const user = new User({zone: 'blue'});
+        savedUser = await user.save();
+        res.status(201).json({ _id: savedUser._id, message: 'Daten erfolgreich hinzugefügt'});
+    } catch {
+        console.error(error);
+        res.status(500).json({error: 'Interner Serverfehler'});
+    }
+}
+
+module.exports = { setUser };
