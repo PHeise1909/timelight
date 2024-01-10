@@ -1,14 +1,13 @@
 <template>
-  
-  
-  <p>Realtime Value: {{ realtimeValue}}</p>
-
-  <QuestionDisplay :initialQuestion="realtimeValue"></QuestionDisplay>
-
+  <div class="app-container">
+    <QuestionDisplay :initialQuestion="realtimeValue"></QuestionDisplay>
+  </div>
 </template>
 
 <style scoped>
-
+  .app-container{
+    background-color: rgb(108,21,173);
+  }
 </style>
 
 <script>
