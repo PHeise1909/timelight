@@ -1,7 +1,8 @@
 <template>
   
   <QuestionDisplay></QuestionDisplay>
-  
+  <p>Realtime Value: {{ realtimeValue}}</p>
+
 </template>
 
 <style scoped>
@@ -19,6 +20,7 @@ export default {
   data(){
     return{
       recognizedParameter: null,
+      realtimeValue: 0,
     }
   },
 
@@ -32,6 +34,7 @@ export default {
       console.error("Ungültiger Parameter");
     }
     this.getOrCreateUser();
+    this.setupSSE();
   },
 
   methods: {
@@ -48,9 +51,20 @@ export default {
           console.log("error");
         }
       } else console.log("User bereits vorhanden: ", localStorage.getItem('User'));
-     
-    }
+    },
+
+    setupSSE() {
+      const eventSource = new EventSource('http://localhost:3500/sse');
+
+      eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        console.log(data);
+        if(data.type === 'update'){
+          this.realtimeValue = data.value;
+          console.log(this.realtimeValue);
+        }
+      }
+    },
   }
 }
-
 </script>

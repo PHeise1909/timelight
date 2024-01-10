@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+</head>
+<body>
+
+    <label for="newValue">Aktuellen Wert anzeigen:</label>
+    <input type="text" id="displayValue" readonly>
+
+    <button onclick="incrementValue()">Weiter</button>
+    <button onclick="decrementValue()">Zurück</button>
+
+    <script>
+        const displayValueInput = document.getElementById('displayValue');
+
+        function updateDisplayValue(newValue) {
+            displayValueInput.value = newValue;
+        }
+
+        function incrementValue() {
+            fetch('http://localhost:3500/updateValue', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ action: 'increment' }),
+            });
+        }
+
+        function decrementValue() {
+            fetch('http://localhost:3500/updateValue', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ action: 'decrement' }),
+            });
+        }
+
+        // Optional: Periodische Aktualisierung des angezeigten Werts (falls erforderlich)
+        setInterval(() => {
+            fetch('http://localhost:3500/updateValue', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ action: 'get' }),
+            })
+                .then(response => response.json())
+                .then(data => updateDisplayValue(data.value))
+                .catch(error => console.error('Fehler beim Abrufen des Werts:', error));
+        }, 5000); // Alle 5 Sekunden aktualisieren (kann angepasst werden)
+    </script>
+
+</body>
+</html>
