@@ -1,6 +1,7 @@
 <template>
-  <div v-if="questions.length > 1">{{ questions[0].question }}</div>
-  <div v-else>No question available</div>
+  <div v-if="questions.length > initialQuestion">{{ questions[initialQuestion].question }}</div>
+  <div v-else>No Question available</div>
+
   </template>
   
   <style scoped>
@@ -9,7 +10,13 @@
   <script>
     import axios from 'axios';
     export default{
-  
+
+      props:{
+        initialQuestion:{
+          type: Number,
+          required: true,
+        }
+      },
       data(){
         return {
           questions: [],

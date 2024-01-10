@@ -1,7 +1,9 @@
 <template>
   
-  <QuestionDisplay></QuestionDisplay>
+  
   <p>Realtime Value: {{ realtimeValue}}</p>
+
+  <QuestionDisplay :initialQuestion="realtimeValue"></QuestionDisplay>
 
 </template>
 
@@ -35,6 +37,7 @@ export default {
     }
     this.getOrCreateUser();
     this.setupSSE();
+    this.fetchInitialValue();
   },
 
   methods: {
@@ -65,6 +68,15 @@ export default {
         }
       }
     },
+
+    async fetchInitialValue(){
+      try{
+        const response = await axios.get('http://localhost:3500/api/getInitialValue');
+        this.realtimeValue = response.data.value;
+      } catch (error) {
+        console.error('Error detching initial Value: ', error);
+      }
+    }
   }
 }
 </script>

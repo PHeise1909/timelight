@@ -54,6 +54,11 @@ app.post('/updateValue', (req, res) => {
     res.json({success: true, value: currentValue});
 });
 
+// Routen zum Abrufen des initialen Werts
+app.get('/api/getInitialValue', (req, res) => {
+    res.json({ value: currentValue });
+});
+
 connectDB();
 
 app.use('/api/questions', questionRoutes);
