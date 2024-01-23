@@ -5,7 +5,11 @@
   </template>
   
   <style scoped>
+  html body{
+    height: 100%;
+  }
     .app-container{
+      height: 100vh;
       background-color: rgb(108,21,173);
     }
   </style>
@@ -64,6 +68,7 @@
           const data = JSON.parse(event.data);
           console.log(data);
           if(data.type === 'update'){
+            this.$store.commit('setRealtimeValue', data.value);
             this.realtimeValue = data.value;
             console.log(this.realtimeValue);
           }
