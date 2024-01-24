@@ -6,18 +6,12 @@ import AdminPage from './AdminPage.vue';
 import axios from 'axios';
 import { createRouter, createWebHistory  } from 'vue-router';
 import { createStore } from 'vuex';
-import CircularCountDownTimer from 'vue-circular-count-down-timer';
-
 
 const store = createStore({
   state: {
-    realtimeValue: 0,
     timerValue: 0
   },
   mutations: {
-    setRealtimeValue(state, value) {
-      state.realtimeValue = value;
-    },
     setTimerValue(state, value){
       state.timerValue = value;
     }
@@ -53,6 +47,5 @@ app.use(vuetify);
 app.use(pinia);
 app.use(router);
 app.use(store);
-app.use(CircularCountDownTimer);
 
 app.mount('#app');

@@ -1,7 +1,7 @@
 <template>
   <div class="grid">
     <div class="color-box" style="background-color: rgb(108,21,173);">
-      <QuestionDisplay :initialQuestion="calculatedValue"></QuestionDisplay>
+      <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay>
     </div>
     <div class="color-box" style="background-color: rgb(108,21,173);">
       <Timer :key="timerKey"></Timer>
@@ -46,34 +46,32 @@ export default {
   data() {
     return {
       timerKey: 0,
+      socketValue: 0,
+      socket: null,
     };
   },
-  computed: {
-    calculatedValue() {
-      return this.$store.state.realtimeValue; // Beispielberechnung
-    },
+  created() {
+   this.setupWebSocket();
   },
   methods: {
+    setupWebSocket() {
+      this.socket = new WebSocket('ws://localhost:3500');
+      this.socket.addEventListener('message', (event) => {
+        const data = JSON.parse(event.data);
+        if(data.type === 'update'){
+          this.socketValue = data.value;
+        }
+      });
+    },
     nextQuestion() {
-      // Erhöhe den Timer-Schlüssel, um die Komponente neu zu laden
       this.timerKey += 1;
-      fetch('http://localhost:3500/updateValue', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ action: 'increment' }),
-            });
+      this.socket.send(JSON.stringify({type: 'increment' }));
+      console.log(this.socketValue);
     },
     decrementValue(){
       this.timerKey -= 1;
-      fetch('http://localhost:3500/updateValue', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ action: 'decrement' }),
-            });
+      this.socket.send(JSON.stringify({type: 'decrement' }));
+      console.log(this.socketValue);
     }
   },
 };

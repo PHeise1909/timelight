@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-      <QuestionDisplay :initialQuestion="realtimeValue"></QuestionDisplay>
+      <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay>
     </div>
   </template>
   
@@ -17,7 +17,7 @@
   <script>
   import QuestionDisplay from './components/question-display.vue'
   import axios from 'axios';
-  
+
   export default {
     components: {
       QuestionDisplay,
@@ -25,10 +25,10 @@
     data(){
       return{
         recognizedParameter: null,
-        realtimeValue: 0,
+        socketValue: 0,
+        socket: null,
       }
     },
-  
     mounted() {
       const urlSearchParams = new URLSearchParams(window.location.search);
       const paramValue = urlSearchParams.get('parameter') || 'default';
@@ -41,10 +41,10 @@
         console.error("Ungültiger Parameter");
       }
       this.getOrCreateUser();
-      this.setupSSE();
-      this.fetchInitialValue();
     },
-  
+    created() {
+      this.setupWebSocket();
+    },
     methods: {
       async getOrCreateUser(){
         console.log("User überprüfen");
@@ -60,29 +60,15 @@
           }
         } else console.log("User bereits vorhanden: ", localStorage.getItem('User'));
       },
-  
-      setupSSE() {
-        const eventSource = new EventSource('http://localhost:3500/sse');
-  
-        eventSource.onmessage = (event) => {
-          const data = JSON.parse(event.data);
-          console.log(data);
-          if(data.type === 'update'){
-            this.$store.commit('setRealtimeValue', data.value);
-            this.realtimeValue = data.value;
-            console.log(this.realtimeValue);
-          }
+      setupWebSocket() {
+      this.socket = new WebSocket('ws://localhost:3500');
+      this.socket.addEventListener('message', (event) => {
+        const data = JSON.parse(event.data);
+        if(data.type === 'update'){
+          this.socketValue = data.value;
         }
-      },
-  
-      async fetchInitialValue(){
-        try{
-          const response = await axios.get('http://localhost:3500/api/getInitialValue');
-          this.realtimeValue = response.data.value;
-        } catch (error) {
-          console.error('Error detching initial Value: ', error);
-        }
-      }
+      });
+    },
     }
   }
   </script>
