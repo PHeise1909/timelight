@@ -3,6 +3,7 @@ import { createPinia } from 'pinia';
 import App from './App.vue'
 import HomePage from './HomePage.vue';
 import AdminPage from './AdminPage.vue';
+import Presentation from './Presentation.vue';
 import axios from 'axios';
 import { createRouter, createWebHistory  } from 'vue-router';
 import { createStore } from 'vuex';
@@ -36,7 +37,8 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {path: '/', name: 'home', component: HomePage},
-    {path: '/admin', name: 'admin', component: AdminPage}
+    {path: '/admin', name: 'admin', component: AdminPage},
+    {path: '/presentation', name: 'timelight', component: Presentation}
   ],
 });
 
