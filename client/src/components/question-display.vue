@@ -29,6 +29,9 @@
   }
 
   .question {
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
     text-align: center;
     font-size: 1.5em;
     margin-bottom: 10px;

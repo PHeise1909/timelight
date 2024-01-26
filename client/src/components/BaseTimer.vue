@@ -115,8 +115,8 @@
   <style scoped lang="scss">
   .base-timer {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
   
     &__svg {
       transform: scaleX(-1);
@@ -129,7 +129,7 @@
   
     &__path-elapsed {
       stroke-width: 7px;
-      stroke: grey;
+      stroke: #421B7C;
     }
   
     &__path-remaining {
@@ -142,7 +142,7 @@
       stroke: currentColor;
   
       &.green {
-        color: rgb(65, 184, 131);
+        color: #7BE034;
       }
   
       &.orange {
@@ -155,9 +155,12 @@
     }
   
     &__label {
+      font-family: 'Bebas Neue', sans-serif;
+      text-transform: uppercase;
+      color: white;
       position: absolute;
-      width: 300px;
-      height: 300px;
+      width: 200px;
+      height: 200px;
       top: 0;
       display: flex;
       align-items: center;
