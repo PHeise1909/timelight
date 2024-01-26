@@ -1,13 +1,19 @@
 <template>
     <div class="answer-button-container">
-        <v-btn size="large" class="mt-10" style="background-color: rgb(232,110,220); color:white" @click="saveAnswer(0)">{{this.answers[0].text}}</v-btn>
-        <v-btn size="large" class="mt-10" style="background-color: rgb(197, 102, 255); color:white" @click="saveAnswer(1)">{{this.answers[1].text}}</v-btn>
-        <v-btn size="large" class="mt-10" style="background-color: rgb(102,181,255); color:white" @click="saveAnswer(2)">{{this.answers[2].text}}</v-btn>
-        <v-btn size="large" class="mt-10" style="background-color: rgb(79,199,78); color:white" @click="saveAnswer(3)">{{this.answers[3].text}}</v-btn>
+        <v-btn size="large" class="mt-10 font-color" style="background-color: rgb(232,110,220); " @click="saveAnswer(0)">{{this.answers[0].text}}</v-btn>
+        <v-btn size="large" class="mt-10 font-color" style="background-color: rgb(197, 102, 255); " @click="saveAnswer(1)">{{this.answers[1].text}}</v-btn>
+        <v-btn size="large" class="mt-10 font-color" style="background-color: rgb(102,181,255); color:white" @click="saveAnswer(2)">{{this.answers[2].text}}</v-btn>
+        <v-btn size="large" class="mt-10 font-color" style="background-color: rgb(79,199,78); color:white" @click="saveAnswer(3)">{{this.answers[3].text}}</v-btn>
     </div>
 </template>
 
 <style scoped> 
+    .font-color {
+        color: white;
+        font-family: 'Bebas Neue', sans-serif;
+        text-transform: uppercase;
+    }
+    
     .answer-button-container {
         display: flex;
         flex-direction: column;

@@ -1,21 +1,27 @@
 <template>
-  <div>
+  <div class="color-background">
     <div class="grid" v-if="socketValue < 3">
-      <div class="color-box" style="background-color: rgb(108,21,173);">
         <Timer :key="timerKey"></Timer>
-      </div>
-      <div class="color-box" style="background-color: rgb(108,21,173);">
         <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay>
-      </div>
-    </div>
-    <div class="frage1" v-if="socketValue === 3">
+    </div> 
+    <div class="frage1" v-if="socketValue === 10">
       Hallo
     </div>
-  </div>
+    <div class="frage2 question-grid" v-if="socketValue === 11">
+      Eine Galápagos-Riesenschildkröte würde für die Strecke 
+       <br> <div style="font-size: 3em;">20 Jahre</div> </br> 
+      <br>benötigen</br>
+      </div>
+</div>
   
 </template>
 
 <style scoped>
+    .color-background{
+        height: 100vh;
+        background-color: rgb(108,21,173);
+    }
+
   .grid {
     display: grid;
     grid-template-rows: repeat(2, 1fr);
@@ -30,6 +36,21 @@
     height: 100%;
   }
   .frage1{
+    display: flex;
+  }
+
+  .question-grid{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+  }
+  .frage2{
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    font-size: 5em;
     display: flex;
   }
 
