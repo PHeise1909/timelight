@@ -1,12 +1,12 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const WebSocket = require('ws');
 
 const connectDB = require('./config/database');
 const questionRoutes = require('./routes/question');
 const userRoutes = require('./routes/users');
-const answerRoutes = require('./routes/answer')
+const answerRoutes = require('./routes/answer');
+const evalRoutes = require('./routes/evaluation');
 
 const app = express();
 app.use(cors());
@@ -19,6 +19,7 @@ connectDB();
 app.use('/api/questions', questionRoutes);
 app.use('/api/setUser', userRoutes);
 app.use('/api/setAnswer', answerRoutes);
+app.use('/api/eval', evalRoutes);
 
 // WebSocket Server
 const server = app.listen(PORT, () => {

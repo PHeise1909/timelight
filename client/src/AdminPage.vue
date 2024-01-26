@@ -8,7 +8,9 @@
       <v-btn class="button" size="x-large" color="green" @click="nextQuestion()" style="margin-rigt: 10px">Nächste Frage</v-btn>
       <v-btn class="button" size="x-large" color="red" @click="decrementValue()">Vorherige Frage</v-btn>
     </div>
-    <div class="color-box" style="background-color: rgb(108,21,173);"></div>
+    <div class="color-box" style="background-color: rgb(108,21,173);">
+      <v-btn @click="getEvaluation()">Get Evaluation</v-btn>
+    </div>
     <div class="color-box" style="background-color: rgb(108,21,173);"></div>
   </div>
 </template>
@@ -37,6 +39,7 @@
 <script>
 import QuestionDisplay from './components/question-display.vue';
 import Timer from './components/BaseTimer.vue';
+import axios from 'axios';
 
 export default {
   components: {
@@ -72,7 +75,20 @@ export default {
       this.timerKey -= 1;
       this.socket.send(JSON.stringify({type: 'decrement' }));
       console.log(this.socketValue);
-    }
+    },
+    async getEvaluation(){
+      try{
+         const response = await axios.get('http://localhost:3500/api/eval', {
+          params: {
+            questionIndex: this.socketValue
+          }
+        });
+         console.log(response.data);
+      }
+      catch (error){
+        console.error('Fehler beim evaluieren', error);
+      }
+    },
   },
 };
 </script>
