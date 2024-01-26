@@ -6,6 +6,7 @@ const WebSocket = require('ws');
 const connectDB = require('./config/database');
 const questionRoutes = require('./routes/question');
 const userRoutes = require('./routes/users');
+const answerRoutes = require('./routes/answer')
 
 const app = express();
 app.use(cors());
@@ -17,6 +18,7 @@ connectDB();
 
 app.use('/api/questions', questionRoutes);
 app.use('/api/setUser', userRoutes);
+app.use('/api/setAnswer', answerRoutes);
 
 // WebSocket Server
 const server = app.listen(PORT, () => {

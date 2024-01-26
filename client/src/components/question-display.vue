@@ -3,14 +3,12 @@
     <div v-if="questions.length > initialQuestion">
 
       <div style="color:white" v-if="questions[initialQuestion].type === 'single-choice'">
-        {{ questions[initialQuestion].question }}
-        <AnswerButtons :answers="getAnswers()" @answerSelected="logAnswer" />
+        <div class="question">{{ questions[initialQuestion].question }}</div>
+        <AnswerButtons :answers="getAnswers()" :questionNr="initialQuestion" @answerSelected="logAnswer" />
       </div>
       
       <div style="color:white" v-else-if="questions[initialQuestion].type === 'numeric'">
-        {{ questions[initialQuestion].question }}
-        <input type="number" v-model="numericAnswer"/>
-        <buttons @click="sendNumericAnswer" class="flex">Senden</buttons>
+        <NumericAnswer :question="questions[initialQuestion].question" :initialQuestion="initialQuestion" />
       </div>
 
       <div v-else>
@@ -22,22 +20,30 @@
   </template>
   
   <style scoped>
-    .container{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height:100%;
-    }
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+  }
+
+  .question {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
   </style>
   
   <script>
     import axios from 'axios';
-    import AnswerButtons from './answer-buttons.vue'
+    import AnswerButtons from './answer-buttons.vue';
+    import NumericAnswer from './numericAnswer.vue';
 
     export default{
       components:{
         AnswerButtons,
+        NumericAnswer,
       },
       props:{
         initialQuestion:{
