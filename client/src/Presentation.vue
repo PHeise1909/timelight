@@ -4,9 +4,29 @@
         <Timer :key="timerKey"></Timer>
         <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay>
     </div> 
-    <div class="frage-allgemein frage1" v-if="socketValue === 10">
-      80s | 90s | 00s 
+
+    <div  v-if="socketValue === 10">
+      <div class="row first-row">
+        <div class="column">
+          <p class="center-text">Welches Jahrzehnt hatte die beste Musik?</p>
+        </div>
+      </div>
+      <div class="separator-vertical"></div>
+      <div class="row second-row">
+        <div class="column">
+          <p class="center-text">80s</p>
+        </div>
+        <div class="separator-horizontal"></div>
+        <div class="column">
+          <p class="center-text">90s</p>
+        </div>
+        <div class="separator-horizontal"></div>
+        <div class="column">
+          <p class="center-text">00s</p>
+        </div>
+      </div>
     </div>
+
     <div class="frage-allgemein frage2" v-if="socketValue === 11">
       Eine Galápagos-Riesenschildkröte würde für die Strecke 
        <br> <div style="font-size: 3em;">20 Jahre</div> </br> 
@@ -52,6 +72,9 @@
     }
 
   .grid {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     height: 100vh;
@@ -73,11 +96,55 @@
     height:100%;
     color: white;
     font-family: 'Bebas Neue', sans-serif;
+    font-size: 4em;
+  }
+
+  .separator-horizontal {
+    width: 4px;
+    height: 100%;
+    background-color: white;
+    margin: 0 10px;
+  }
+
+  .separator-vertical {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    margin: 0 10px;
+  }
+  .row {
+    display: flex;
+  }
+
+  .first-row {
+    height: 33.33vh; /* 1/3 der Höhe der Webseite */
+  }
+
+  .second-row {
+    height: 66.66vh; /* 2/3 der Höhe der Webseite */
+  }
+
+  .column {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .center-text {
     text-align: center;
-    font-size: 5em;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4em;
+
+  }
+  .tabelle {
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
   }
   .frage1{
-    display: flex;
+    text-align: center;
+    font-size: 5em;
   }
 
   .question-grid{
