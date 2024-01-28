@@ -1,11 +1,42 @@
 <template>
   <div class="color-background">
-    <div class="grid" v-if="socketValue < 3">
+    <div class="timer-element" v-if="socketValue < 10">
         <Timer :key="timerKey"></Timer>
-        <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay>
-    </div> 
-
-    <div  v-if="socketValue === 10">
+    </div>
+    <div class="element-question">
+      <div v-if="socketValue === 0">
+        Welches Jahrzehnt hatte die beste Musik?
+      </div>
+      <div v-if="socketValue === 1">
+        Wie weit war dein Anreiseweg?
+      </div>
+      <div v-if="socketValue === 2">
+        Was war dein erstes Mobiltelefon?
+      </div>
+      <div v-if="socketValue === 3">
+        Welches Internetphänomen war das prägendste für dich?
+      </div>
+      <div v-if="socketValue === 4">
+        Das wievielte Mal nimmst du am Meet-Up teil?
+      </div>
+      <div v-if="socketValue === 5">
+        Wie alt fühlst du dich?
+      </div>
+      <div v-if="socketValue === 6">
+        Was ist deine bevorzugte Zeit für Vorlesungen?
+      </div>
+      <div v-if="socketValue === 7">
+        Welches vergessene Wort aus den 90ern sollte wieder zum Trend werden?
+      </div>
+      <div v-if="socketValue === 8">
+        Wie beschreibst du die Geschwindigkeit, mit der Semesterferien vergehen? 
+      </div>
+      <div v-if="socketValue === 9">
+        Welches historisches Ereignis könnte als Filmtitel für eine Komödie dienen?
+      </div>
+    </div>
+  
+    <div v-if="socketValue === 10">
       <div class="row first-row">
         <div class="column">
           <p class="center-text">Welches Jahrzehnt hatte die beste Musik?</p>
@@ -14,53 +45,82 @@
       <div class="separator-vertical"></div>
       <div class="row second-row">
         <div class="column">
-          <p class="center-text">80s</p>
+          <img class="center-image" src="/Users/isabel/Desktop/Uni/siebtes_Semester/Bachelorprojekt - Timelight/timelight/client/src/assets/Musik/rickroll.gif">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <p class="center-text">90s</p>
+          <img class="center-image" src="/Users/isabel/Desktop/Uni/siebtes_Semester/Bachelorprojekt - Timelight/timelight/client/src/assets/Musik/barbie.gif">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <p class="center-text">00s</p>
+          <img class="center-image" src="/Users/isabel/Desktop/Uni/siebtes_Semester/Bachelorprojekt - Timelight/timelight/client/src/assets/Musik/nickelback.gif">
         </div>
       </div>
     </div>
 
-    <div class="frage-allgemein frage2" v-if="socketValue === 11">
+    <div class="frage-allgemein" v-if="socketValue === 11">
       Eine Galápagos-Riesenschildkröte würde für die Strecke 
-       <br> <div style="font-size: 3em;">20 Jahre</div> </br> 
-      <br>benötigen</br>
+       <p style="font-size: 3em;">20 Jahre </p> 
+      <p>benötigen</p>
     </div>
-    <div class="frage-allgemein frage3" v-if="socketValue === 12">
-      Nokia | Backstein | Smartphone 
+
+    <div v-if="socketValue === 12">
+      <div class="row first-row">
+        <div class="column">
+          <p class="center-text">Was war euer erstes Mobiltelefon?</p>
+        </div>
+      </div>
+      <div class="separator-vertical"></div>
+      <div class="row second-row">
+        <div class="column">
+          <p class="center-text">Zu unserer Zeit gab es nur Backsteine</p>
+        </div>
+        <div class="separator-horizontal"></div>
+        <div class="column">
+          <p class="center-text">Das og Backstein-Handy von Nokia</p>
+        </div>
+        <div class="separator-horizontal"></div>
+        <div class="column"> 
+          <p class="center-text">Ein Klapphandy</p>
+        </div>
+      </div>
     </div>
-    <div class="frage-allgemein frage4" v-if="socketValue === 13">
+
+    <div class="frage-allgemein" v-if="socketValue === 13">
       Gangnam Style
     </div>
-    <div class="frage-allgemein frage5" v-if="socketValue === 14">
+
+    <div class="frage-allgemein" v-if="socketValue === 14">
       Im Durchschnitt 2 mal
     </div>
-    <div class="frage-allgemein frage6" v-if="socketValue === 15">
-      Das Holstentor ist blabla jünger/älter als ihr
-    </div>
-    <div class="frage-allgemein frage7" v-if="socketValue === 16">
+     
+    <div class="frage-allgemein" v-if="socketValue === 15">
+      Das Holstentor ist 
+       <p style="font-size: 3em;">20 Jahre jünger/ älter </p> 
+      <p>als ihr</p>
+    </div> 
+
+    <div class="frage-allgemein" v-if="socketValue === 16">
       Nachteulen 
     </div>
-    <div class="frage-allgemein frage8" v-if="socketValue === 17">
+
+    <div class="frage-allgemein" v-if="socketValue === 17">
       Radikal!
     </div>
-    <div class="frage-allgemein frage9" v-if="socketValue === 18">
+
+    <div class="frage-allgemein" v-if="socketValue === 18">
       Zeitraffer
     </div>
-    <div class="frage-allgemein frage10" v-if="socketValue === 19">
+
+    <div class="frage-allgemein" v-if="socketValue === 19">
       AI generiertes Bild
     </div>
-    <div ref="celebrate" v-if="socketValue === 20">
-    </div>
+
+    <div ref="celebrate" v-if="socketValue === 20"> </div>
     <div class="frage-allgemein ende" v-if="socketValue === 20">
       Eure Teilnahme war radikal!
     </div>
+
   </div>
   
 </template>
@@ -71,23 +131,24 @@
         background-color: rgb(108,21,173);
     }
 
-  .grid {
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    height: 100vh;
-  }
-  .color-box {
-    display:flex;
-    flex-direction: column;
+  .timer-element {
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    height: 50vh;
   }
 
+  .element-question{
+    position: absolute;
+    top: 45%;
+    left: 5%;
+    width: 90%; /* Set the width as per your design */
+    text-align: center;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4em;
+    text-transform: uppercase;
+  }
   .frage-allgemein{
     display: flex;
     flex-direction: column;
@@ -103,14 +164,12 @@
     width: 4px;
     height: 100%;
     background-color: white;
-    margin: 0 10px;
   }
 
   .separator-vertical {
     width: 100%;
     height: 4px;
     background-color: white;
-    margin: 0 10px;
   }
   .row {
     display: flex;
@@ -136,21 +195,11 @@
     color: white;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4em;
-
-  }
-  .tabelle {
-    color: white;
-    font-family: 'Bebas Neue', sans-serif;
-  }
-  .frage1{
-    text-align: center;
-    font-size: 5em;
   }
 
-  .question-grid{
-  }
-  .frage2{
-  
+  .center-image{
+    align-items: center;
+    justify-content: center;
   }
 
 </style>
