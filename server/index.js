@@ -60,3 +60,9 @@ function broadcastUpdate() {
         }
     });
 }
+
+function getSharedValue(){
+    return sharedValue;
+}
+
+module.exports = {getSharedValue};
