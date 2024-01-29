@@ -4,11 +4,11 @@
 
       <div style="color:white" v-if="questions[initialQuestion].type === 'single-choice'">
         <div class="question">{{ questions[initialQuestion].question }}</div>
-        <AnswerButtons :answers="getAnswers()" :questionNr="initialQuestion" @answerSelected="logAnswer" />
+        <AnswerButtons class="buttons" :answers="getAnswers()" :questionNr="initialQuestion" @answerSelected="logAnswer" />
       </div>
       
       <div style="color:white" v-else-if="questions[initialQuestion].type === 'numeric'">
-        <NumericAnswer :question="questions[initialQuestion].question" :initialQuestion="initialQuestion" />
+        <NumericAnswer  :question="questions[initialQuestion].question" :initialQuestion="initialQuestion" />
       </div>
 
       <div v-else>
@@ -24,17 +24,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     height:100%;
+    background-image: url(@/assets/Polygon.png);
+    background-position-x: center;
+    background-position-y: 0%;
   }
 
   .question {
+    position: absolute;
+    top: 2%;
+    left: 5%;
+    right: 5%;
     color: white;
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
     text-align: center;
-    font-size: 1.5em;
-    margin-bottom: 10px;
+    font-size: xx-large;
+  }
+
+  .buttons {
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    right: 5%
   }
   </style>
   

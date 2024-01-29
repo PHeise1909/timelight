@@ -19,9 +19,15 @@
     }
   
     .question {
+      position: absolute;
+      top: 1%;
+      left: 5%;
+      right: 5%;
+      color: white;
+      font-family: 'Bebas Neue', sans-serif;
+      text-transform: uppercase;
       text-align: center;
-      font-size: 1.5em;
-      margin-bottom: 10px;
+      font-size: xx-large;
     }
   
     .input-container {
