@@ -27,7 +27,7 @@ const server = app.listen(PORT, () => {
 });
 
 const wss = new WebSocket.Server({ server });
-let sharedValue = 0;
+global.sharedValue = 0;
 
 wss.on('connection', (socket) => {
     console.log('WebSocket connection established');
@@ -61,8 +61,4 @@ function broadcastUpdate() {
     });
 }
 
-function getSharedValue(){
-    return sharedValue;
-}
-
-module.exports = {getSharedValue};
+module.exports = { sharedValue };
