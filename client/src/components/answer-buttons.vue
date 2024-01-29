@@ -1,9 +1,9 @@
 <template>
     <div class="answer-button-container">
-        <v-btn size="large" class="mt-10 font-color" style="background-color: rgb(232,110,220); " @click="saveAnswer(0)">{{this.answers[0].text}}</v-btn>
-        <v-btn size="large" class="mt-10 font-color" style="background-color: rgb(197, 102, 255); " @click="saveAnswer(1)">{{this.answers[1].text}}</v-btn>
-        <v-btn size="large" class="mt-10 font-color" style="background-color: rgb(102,181,255); color:white" @click="saveAnswer(2)">{{this.answers[2].text}}</v-btn>
-        <v-btn size="large" class="mt-10 font-color" style="background-color: rgb(79,199,78); color:white" @click="saveAnswer(3)">{{this.answers[3].text}}</v-btn>
+        <v-btn size="large" class="mt-10 font-color text-wrap" style="background-color: rgb(232,110,220); " @click="saveAnswer(0)">{{this.answers[0].text}}</v-btn>
+        <v-btn size="large" class="mt-10 font-color text-wrap" style="background-color: rgb(197, 102, 255); " @click="saveAnswer(1)">{{this.answers[1].text}}</v-btn>
+        <v-btn size="large" class="mt-10 font-color text-wrap" style="background-color: rgb(102,181,255); color:white" @click="saveAnswer(2)">{{this.answers[2].text}}</v-btn>
+        <v-btn size="large" class="mt-10 font-color text-wrap" style="background-color: rgb(79,199,78); color:white" @click="saveAnswer(3)">{{this.answers[3].text}}</v-btn>
     </div>
 </template>
 
@@ -20,9 +20,16 @@
         align-items: center;
     }
 
-    .v-btn {
-        width: 80%;
+    .mt-10 {
+        width: 100%;
         margin-top: 10px;
+        padding-top: 35px;
+        padding-bottom: 55px; 
+        border-radius: 0px; 
+        text-align: center;
+        text-overflow: clip; 
+        font-size: x-large;
+        align-self: center;   
     }
 </style>
 
