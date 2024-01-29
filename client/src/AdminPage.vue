@@ -40,6 +40,8 @@
 import QuestionDisplay from './components/question-display.vue';
 import Timer from './components/BaseTimer.vue';
 import axios from 'axios';
+const ws = import.meta.env.VITE_VUE_APP_WS;
+const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
 
 export default {
   components: {
@@ -58,7 +60,7 @@ export default {
   },
   methods: {
     setupWebSocket() {
-      this.socket = new WebSocket('ws://localhost:3500');
+      this.socket = new WebSocket(ws);
       this.socket.addEventListener('message', (event) => {
         const data = JSON.parse(event.data);
         if(data.type === 'update'){
@@ -78,7 +80,7 @@ export default {
     },
     async getEvaluation(){
       try{
-         const response = await axios.get('http://localhost:3500/api/eval', {
+         const response = await axios.get(`${backend}/eval`, {
           params: {
             questionIndex: this.socketValue
           }

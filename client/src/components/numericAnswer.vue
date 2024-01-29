@@ -53,7 +53,8 @@
   
   <script>
   import axios from 'axios';
-  
+  const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
+
   export default {
     props: {
       question: {
@@ -81,7 +82,7 @@
           }
   
           try {
-            await axios.post('http://localhost:3500/api/setAnswer', {
+            await axios.post(`${backend}/setAnswer`, {
               userId,
               position: this.initialQuestion,
               answer: this.numericAnswer.toString(),

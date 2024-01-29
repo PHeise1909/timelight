@@ -17,7 +17,8 @@
   <script>
   import QuestionDisplay from './components/question-display.vue'
   import axios from 'axios';
-
+  const ws = import.meta.env.VITE_VUE_APP_WS;
+  const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
   export default {
     components: {
       QuestionDisplay,
@@ -34,7 +35,6 @@
       const paramValue = urlSearchParams.get('parameter') || 'default';
   
       console.log('paramValue:', paramValue);
-  
       if(['blue','red','green'].includes(paramValue)){
         this.recognizedParameter = paramValue;
       } else {
@@ -52,7 +52,7 @@
         if(localStorage.getItem("User") === null){
           try{
             console.log("Neuer User wird erstellt")
-            const response = await axios.get('http://localhost:3500/api/setUser', {zone: this.recognizedParameter});
+            const response = await axios.get(`${backend}/setUser`, {zone: this.recognizedParameter});
             console.log(response.data._id);
             localStorage.setItem('User', response.data._id)
           } catch{
@@ -61,7 +61,7 @@
         } else console.log("User bereits vorhanden: ", localStorage.getItem('User'));
       },
       setupWebSocket() {
-      this.socket = new WebSocket('ws://localhost:3500');
+      this.socket = new WebSocket(ws);
       this.socket.addEventListener('message', (event) => {
         const data = JSON.parse(event.data);
         if(data.type === 'update'){

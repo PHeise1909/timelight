@@ -42,6 +42,8 @@
     import axios from 'axios';
     import AnswerButtons from './answer-buttons.vue';
     import NumericAnswer from './numericAnswer.vue';
+    const ws = import.meta.env.VITE_VUE_APP_WS;
+    const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
 
     export default{
       components:{
@@ -66,7 +68,8 @@
       methods:{
         async fetchQuestions(){
           try{
-            const response = await axios.get('http://localhost:3500/api/questions');
+            console.log(backend)
+            const response = await axios.get(`${backend}/questions`);
             this.questions = response.data;
             console.log(this.questions);
           } catch (error){

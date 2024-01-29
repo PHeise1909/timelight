@@ -28,7 +28,7 @@
 
 <script>
     import axios from 'axios';
-
+    const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
     export default{
         props: {
             answers: {
@@ -52,7 +52,7 @@
                 const answer = this.answers[position].text;
 
                 try{
-                    await axios.post('http://localhost:3500/api/setAnswer', {
+                    await axios.post(`${backend}/setAnswer`, {
                         userId,
                         position: this.questionNr,
                         answer
