@@ -4,7 +4,7 @@
       <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay>
     </div>
     <div class="color-box" style="background-color: rgb(108,21,173);">
-      <Timer :key="timerKey"></Timer>
+      <Timer :key="socketValue"></Timer>
       <v-btn class="button" size="x-large" color="green" @click="nextQuestion()" style="margin-rigt: 10px">Nächste Frage</v-btn>
       <v-btn class="button" size="x-large" color="red" @click="decrementValue()">Vorherige Frage</v-btn>
     </div>

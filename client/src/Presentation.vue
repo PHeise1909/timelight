@@ -1,7 +1,7 @@
 <template>
   <div class="color-background">
     <div class="timer-element" v-if="socketValue < 10">
-        <Timer :key="timerKey"></Timer>
+        <Timer :key="socketValue"></Timer>
     </div>
     <div class="element-question">
       <div v-if="socketValue === 0">
@@ -45,15 +45,15 @@
       <div class="separator-vertical"></div>
       <div class="row second-row">
         <div class="column">
-          <img class="center-image" src="/Users/isabel/Desktop/Uni/siebtes_Semester/Bachelorprojekt - Timelight/timelight/client/src/assets/Musik/rickroll.gif">
+          <img class="center-image" src="./assets/Musik/rickroll.gif">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <img class="center-image" src="/Users/isabel/Desktop/Uni/siebtes_Semester/Bachelorprojekt - Timelight/timelight/client/src/assets/Musik/barbie.gif">
+          <img class="center-image" src="./assets/Musik/barbie.gif">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <img class="center-image" src="/Users/isabel/Desktop/Uni/siebtes_Semester/Bachelorprojekt - Timelight/timelight/client/src/assets/Musik/nickelback.gif">
+          <img class="center-image" src="./assets/Musik/nickelback.gif">
         </div>
       </div>
     </div>
