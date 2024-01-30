@@ -32,23 +32,20 @@
     background-size: 100%;
   }
 
+
   .question {
-    position: absolute;
-    top: 2%;
-    left: 5%;
-    right: 5%;
+    padding:5%;
     color: white;
     font-family: 'Bebas Neue', sans-serif;
     text-transform: uppercase;
     text-align: center;
     font-size: xx-large;
+    position: relative;
   }
 
   .buttons {
-    position: absolute;
-    top: 25%;
-    left: 5%;
-    right: 5%
+    padding-top: 10vw;
+    padding-bottom: 1vw;
   }
   </style>
   
