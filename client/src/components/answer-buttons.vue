@@ -23,12 +23,12 @@
     .mt-10 {
         width: 100%;
         margin-top: 10px;
-        padding-top: 35px;
-        padding-bottom: 55px; 
+        padding-top: 30px;
+        padding-bottom: 50px; 
         border-radius: 0px; 
         text-align: center;
         text-overflow: clip; 
-        font-size: x-large;
+        font-size: large;
         align-self: center;   
     }
 </style>

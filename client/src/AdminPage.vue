@@ -1,7 +1,17 @@
 <template>
   <div class="grid">
     <div class="color-box" style="background-color: rgb(108,21,173);">
-      <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay>
+      <div>
+        <div v-if="socketValue === 0">
+          Landing Page
+        </div>
+        <div v-else-if="socketValue%2 === 1 && socketValue <= 20" >
+          Question
+          <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay></div>
+        <div v-else-if="socketValue%2 === 0 && socketValue <= 20">
+          Evaluation Slide
+        </div>
+      </div>
     </div>
     <div class="color-box" style="background-color: rgb(108,21,173);">
       <Timer :key="socketValue"></Timer>

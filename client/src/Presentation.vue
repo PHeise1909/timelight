@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="background">
     <div class="picture-begruessung" v-if="socketValue === -1"> 
@@ -8,39 +9,39 @@
         <p style="font-size: 4em">Gleich geht's los...</p>
     </div>
     <div class="element-question">
-      <div v-if="socketValue === 0">
+      <div v-if="socketValue === 1">
         Welches Jahrzehnt hatte die beste Musik?
       </div>
-      <div v-if="socketValue === 1">
+      <div v-if="socketValue === 3">
         Wie weit war dein Anreiseweg?
       </div>
-      <div v-if="socketValue === 2">
+      <div v-if="socketValue === 5">
         Was war dein erstes Mobiltelefon?
       </div>
-      <div v-if="socketValue === 3">
+      <div v-if="socketValue === 7">
         Welches Internetphänomen war das prägendste für dich?
       </div>
-      <div v-if="socketValue === 4">
+      <div v-if="socketValue === 9">
         Das wievielte Mal nimmst du am Meet-Up teil?
       </div>
-      <div v-if="socketValue === 5">
+      <div v-if="socketValue === 11">
         Wie alt fühlst du dich?
       </div>
-      <div v-if="socketValue === 6">
+      <div v-if="socketValue === 13">
         Was ist deine bevorzugte Zeit für Vorlesungen?
       </div>
-      <div v-if="socketValue === 7">
+      <div v-if="socketValue === 15">
         Welches vergessene Wort aus den 90ern sollte wieder zum Trend werden?
       </div>
-      <div v-if="socketValue === 8">
+      <div v-if="socketValue === 17">
         Wie beschreibst du die Geschwindigkeit, mit der Semesterferien vergehen? 
       </div>
-      <div v-if="socketValue === 9">
+      <div v-if="socketValue === 19">
         Welches historisches Ereignis könnte als Filmtitel für eine Komödie dienen?
       </div>
     </div>
   
-    <div v-if="socketValue === 10">
+    <div v-if="socketValue === 2">
       <div class="row first-row">
         <div class="column">
           <p class="center-text">Welches Jahrzehnt hatte die beste Musik?</p>
@@ -57,18 +58,18 @@
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <img style="height: 66.66vh; width: 66.66vh"class="center-image" src="./assets/Musik/nickelback.gif">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" src="./assets/Musik/nickelback.gif">
         </div>
       </div>
     </div>
 
-    <div class="frage-allgemein" v-if="socketValue === 11">
+    <div class="frage-allgemein" v-if="socketValue === 4">
       Eine Galápagos-Riesenschildkröte würde für die Strecke 
        <p style="font-size: 3em;">20 Jahre</p> 
       <p>benötigen</p>
     </div>
 
-    <div v-if="socketValue === 12">
+    <div v-if="socketValue === 6">
       <div class="row first-row">
         <div class="column">
           <p class="center-text">Was war euer erstes Mobiltelefon?</p>
@@ -90,26 +91,26 @@
       </div>
     </div>
 
-    <div class="frage-allgemein" v-if="socketValue === 13">
+    <div class="frage-allgemein" v-if="socketValue === 8">
       Gangnam Style
     </div>
 
-    <div class="frage-allgemein" v-if="socketValue === 14">
+    <div class="frage-allgemein" v-if="socketValue === 10">
       Im Durchschnitt 2 mal
     </div>
      
-    <div class="frage-allgemein" v-if="socketValue === 15">
+    <div class="frage-allgemein" v-if="socketValue === 12">
       Das Holstentor ist 
        <p style="font-size: 3em;">20 Jahre jünger/ älter </p> 
       <p>als ihr</p>
     </div> 
 
-    <div class="frage-allgemein" v-if="socketValue === 16">
+    <div class="frage-allgemein" v-if="socketValue === 14">
       Ihr liebt es einfach früh aufzustehen!
       <img class="center-image" src="./assets/Aufstehen/Frühaufsteher.gif"> 
     </div>
 
-    <div class="frage-allgemein" v-if="socketValue === 17">
+    <div class="frage-allgemein" v-if="socketValue === 16">
       Radikal!
     </div>
 
@@ -117,12 +118,12 @@
       Zeitraffer
     </div>
 
-    <div class="frage-allgemein" v-if="socketValue === 19">
+    <div class="frage-allgemein" v-if="socketValue === 20">
       AI generiertes Bild
     </div>
 
-    <div ref="celebrate" v-if="socketValue === 20"> </div>
-    <div class="frage-allgemein ende" v-if="socketValue === 20">
+    <div ref="celebrate" v-if="socketValue === 21"> </div>
+    <div class="frage-allgemein ende" v-if="socketValue === 21">
       Eure Teilnahme war radikal!
     </div>
 
@@ -223,14 +224,10 @@
 </style>
 
 <script>
-import QuestionDisplay from './components/question-display.vue';
-import Timer from './components/BaseTimer.vue';
 import confetti from "canvas-confetti";
 
 export default {
   components: {
-    QuestionDisplay,
-    Timer,
   },
   data() {
     return {
@@ -241,12 +238,12 @@ export default {
     };
   },
   created() {
-   this.setupWebSocket();
+    this.setupWebSocket();
   },
 
   watch: {
     socketValue(newValue) {
-      if (newValue === 20) {
+      if (newValue === 21) {
         this.celebrate();
       }
     },
