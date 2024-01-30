@@ -93,8 +93,30 @@ evaluateQuestionNumeric = (answersBlue, answersRed, answersGreen) => {
 
     return result;
 };
+const calculateAverage = (answers) => {
+    const totalAnswers = answers.length;
+    const sum = sumOfAnswers(answers);
+    return totalAnswers === 0 ? 0 : sum / totalAnswers;
+};
+const evaluateQuestionAverage = (answersBlue, answersRed, answersGreen) => {
+    const averageBlue = calculateAverage(answersBlue);
+    const averageRed = calculateAverage(answersRed);
+    const averageGreen = calculateAverage(answersGreen);
 
+    const result = {
+        blue: {
+            average: averageBlue
+        },
+        red: {
+            average: averageRed
+        },
+        green: {
+            average: averageGreen
+        }
+    };
 
+    return result;
+};
 const getEvaluation = async (req, res) => {
     try{
         const x = global.sharedValue;
@@ -146,11 +168,11 @@ const getEvaluation = async (req, res) => {
 
         let answerReturn = {};
         if(global.sharedValue === 2 || global.sharedValue === 6 || global.sharedValue === 8 || global.sharedValue === 14  || global.sharedValue === 16 || global.sharedValue === 18 || global.sharedValue === 20){
-            console.log(global.sharedValue);
             answerReturn = evaluateQuestion(answersBlue, answersRed, answersGreen);
-        } else if(global.sharedValue === 4 || global.sharedValue === 10 || global.sharedValue === 12){
-            console.log(global.sharedValue);
+        } else if(global.sharedValue === 4 || global.sharedValue === 12){
             answerReturn = evaluateQuestionNumeric(answersBlue, answersRed, answersGreen);
+        } else if(global.sharedValue === 10){
+            answerReturn = evaluateQuestionAverage(answersBlue, answersRed, answersGreen);
         } else {
             console.log('No Questions left');
         }
