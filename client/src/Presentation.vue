@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="background">
     <div class="element-question">
@@ -50,7 +51,7 @@
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <img style="height: 66.66vh; width: 66.66vh"class="center-image" src="./assets/Musik/nickelback.gif">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" src="./assets/Musik/nickelback.gif">
         </div>
       </div>
     </div>
@@ -203,8 +204,6 @@
 </style>
 
 <script>
-import QuestionDisplay from './components/question-display.vue';
-import Timer from './components/BaseTimer.vue';
 import confetti from "canvas-confetti";
 
 export default {
@@ -219,7 +218,7 @@ export default {
     };
   },
   created() {
-   this.setupWebSocket();
+    this.setupWebSocket();
   },
 
   watch: {
