@@ -91,9 +91,6 @@ export default {
     async getEvaluation(){
       try{
          const response = await axios.get(`${backend}/eval`, {
-          params: {
-            questionIndex: this.socketValue
-          }
         });
          console.log(response.data);
       }
