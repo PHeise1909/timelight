@@ -49,7 +49,7 @@
     <div v-if="socketValue === 2">
       <div class="row first-row">
         <div class="column">
-          <p class="center-text">Welches Jahrzehnt hatte die beste Musik?</p>
+          <p class="center-text text">Welches Jahrzehnt hatte die beste Musik?</p>
         </div>
       </div>
       <div class="separator-vertical"></div>
@@ -73,12 +73,13 @@
       <p>Eine Galápagos-Riesenschildkröte würde für die Strecke </p>
        <p style="font-size: 3em;"> {{ numericAnswer.time }} Tage</p> 
       <p>benötigen</p>
+      <img style="height: 30vh" src="./assets/Weg/galapagos.gif">
     </div>
 
     <div v-if="socketValue === 6">
       <div class="row first-row">
         <div class="column">
-          <p class="center-text">Was war euer erstes Mobiltelefon?</p>
+          <p class="center-text text">Was war euer erstes Mobiltelefon?</p>
         </div>
       </div>
       <div class="separator-vertical"></div>
@@ -124,17 +125,17 @@
     </div>
      
     <div class="frage-allgemein" v-if="socketValue === 12">
-      Das Holstentor ist 
-       <p style="font-size: 3em;">20 Jahre jünger/ älter </p> 
-      <p>als ihr</p>
+      Ihr solltet euch alt fühlen, selbst das Holstentor ist 
+       <p style="font-size: 3em;">20 Jahre jünger</p> 
+      <p>als ihr alle zusammen</p>
     </div> 
 
     <div class="frage-allgemein" v-if="socketValue === 14">
-      Ihr liebt es einfach früh aufzustehen!
+      Gruppe B, ihr liebt es einfach früh aufzustehen!
       <img class="center-image" src="./assets/Aufstehen/Frühaufsteher.gif"> 
     </div>
 
-    <div class="frage-allgemein" v-if="socketValue === 16">
+    <div style="font-size: 25vw" class="frage-allgemein" v-if="socketValue === 16">
       Radikal!
     </div>
 
@@ -247,6 +248,9 @@
 
   .center-text {
     text-align: center;
+  }
+
+  .text{
     color: white;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4em;
