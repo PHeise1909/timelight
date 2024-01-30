@@ -1,8 +1,5 @@
 <template>
-  <div class="color-background">
-    <div class="timer-element" v-if="socketValue < 10">
-        <Timer :key="socketValue"></Timer>
-    </div>
+  <div class="background">
     <div class="element-question">
       <div v-if="socketValue === 0">
         Welches Jahrzehnt hatte die beste Musik?
@@ -45,22 +42,22 @@
       <div class="separator-vertical"></div>
       <div class="row second-row">
         <div class="column">
-          <img class="center-image" src="./assets/Musik/rickroll.gif">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" src="./assets/Musik/rickroll.gif">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <img class="center-image" src="./assets/Musik/barbie.gif">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" src="./assets/Musik/barbie.gif">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <img class="center-image" src="./assets/Musik/nickelback.gif">
+          <img style="height: 66.66vh; width: 66.66vh"class="center-image" src="./assets/Musik/nickelback.gif">
         </div>
       </div>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 11">
       Eine Galápagos-Riesenschildkröte würde für die Strecke 
-       <p style="font-size: 3em;">20 Jahre </p> 
+       <p style="font-size: 3em;">20 Jahre</p> 
       <p>benötigen</p>
     </div>
 
@@ -72,15 +69,15 @@
       </div>
       <div class="separator-vertical"></div>
       <div class="row second-row">
-        <div class="column">
+        <div class="column" style="background-color: #7B16BD">
           <p class="center-text">Zu unserer Zeit gab es nur Backsteine</p>
         </div>
         <div class="separator-horizontal"></div>
-        <div class="column">
+        <div class="column" style="background-color: #4E8DEA">
           <p class="center-text">Das og Backstein-Handy von Nokia</p>
         </div>
         <div class="separator-horizontal"></div>
-        <div class="column"> 
+        <div class="column" style="background-color: #D833E0"> 
           <p class="center-text">Ein Klapphandy</p>
         </div>
       </div>
@@ -101,7 +98,8 @@
     </div> 
 
     <div class="frage-allgemein" v-if="socketValue === 16">
-      Nachteulen 
+      Ihr liebt es einfach früh aufzustehen!
+      <img class="center-image" src="./assets/Aufstehen/Frühaufsteher.gif"> 
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 17">
@@ -126,21 +124,21 @@
 </template>
 
 <style scoped>
-    .color-background{
-        height: 100vh;
-        background-color: rgb(108,21,173);
+    .background{
+      background-image: url('./assets/Background-highRes.png');
+      background-size: cover;
+      height: 100vh;
+      background-color: rgb(108,21,173);
     }
 
-  .timer-element {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
-  }
+    .transparent{
+      background: rgb(108,21,173);
+      height: 100vh;
+    }
 
   .element-question{
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 5%;
     width: 90%; /* Set the width as per your design */
     text-align: center;
