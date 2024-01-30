@@ -209,8 +209,6 @@ import confetti from "canvas-confetti";
 
 export default {
   components: {
-    QuestionDisplay,
-    Timer,
   },
   data() {
     return {
