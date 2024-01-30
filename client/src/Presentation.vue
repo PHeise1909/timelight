@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="background">
-    <div class="picture-begruessung" v-if="socketValue === -1"> 
+    <div class="picture-begruessung" v-if="socketValue === 0"> 
       <img style="height: 95vh" src="./assets/Allgemein/EMI-Surfing-4.png">
     </div>
-    <div class="begruessung" v-if="socketValue === -1">
+    <div class="begruessung" v-if="socketValue === 0">
         <div style="font-size: 8.2em; text-transform: uppercase">Willkommen zu Timelight!</div>
         <p style="font-size: 4em">Gleich geht's los...</p>
     </div>
