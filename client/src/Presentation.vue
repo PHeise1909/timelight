@@ -123,29 +123,8 @@
     <div class="frage-allgemein" v-if="socketValue === 10">
       {{getMaxAverageGroup()}}
     </div>
-     
+
     <div class="frage-allgemein" v-if="socketValue === 12">
-<<<<<<< HEAD
-      <p>Gruppe {{ getOldestGroup() }} ist die Älteste. Ihr seid {{getMaxSum()}} Jahre alt.</p>
-      Das Holstentor ist 
-       <p style="font-size: 3em;">
-        {{ Math.abs(evaluationAnswers[getOldestGroup()].diff) }} Jahre 
-        {{ evaluationAnswers[getOldestGroup()].diff <= 0 ? 'älter' : 'jünger' }} 
-      </p> 
-      <p>als ihr</p>
-    </div> 
-
-    <div class="frage-allgemein" v-if="socketValue === 14">
-      <p>Blau: {{evaluationAnswers.blue.answer}}</p>
-      <p>Grün: {{evaluationAnswers.green.answer}}</p>
-      <p>Rot: {{evaluationAnswers.red.answer}}</p>
-    </div>
-
-    <div class="frage-allgemein" v-if="socketValue === 16">
-      <p>Blau: {{evaluationAnswers.blue.answer}}</p>
-      <p>Grün: {{evaluationAnswers.green.answer}}</p>
-      <p>Rot: {{evaluationAnswers.red.answer}}</p>
-=======
       Ihr solltet euch alt fühlen, selbst das Holstentor ist 
        <p style="font-size: 3em;">20 Jahre jünger</p> 
       <p>als ihr alle zusammen</p>
@@ -158,7 +137,6 @@
 
     <div style="font-size: 25vw" class="frage-allgemein" v-if="socketValue === 16">
       Radikal!
->>>>>>> 556fa8a9af8c9f5c9ddcc5d340a970787f0970b0
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 18">
