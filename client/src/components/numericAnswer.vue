@@ -1,10 +1,12 @@
 <template>
   <div class="numeric-answer-container">
     <div class="question">{{ question }}</div>
-    <div class="input-container">
-      <input type="number" v-model="numericAnswer" placeholder="Antwort eingeben" />
+    <div class="input-element">
+      <div class="input-container">
+        <input type="number" v-model="numericAnswer" placeholder="Antwort eingeben" />
+      </div>
+      <button @click="sendNumericAnswer">Senden</button>
     </div>
-    <button @click="sendNumericAnswer">Senden</button>
   </div>
 </template>
   
@@ -13,16 +15,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-around;
+      justify-content:space-around;
       color: white;
-      margin-top: 20px;
+      height: 100%;
     }
-  
+    
+
+
     .question {
-      position: absolute;
-      top: 2%;
-      left: 5%;
-      right: 5%;
+      position: relative;
+      padding:5%;
+
       color: white;
       font-family: 'Bebas Neue', sans-serif;
       text-transform: uppercase;
@@ -30,10 +33,18 @@
       font-size: xx-large;
     }
   
-    .input-container {
+    .input-element{
       position: relative;
+      margin-top: 30vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .input-container {
       background-color: white;
-      width: 80%;
+      width: 90%;
       padding: 10px;
       margin: 10px;
       display: flex;
@@ -48,16 +59,18 @@
     input {
       width: 100%;
       border: none;
-      padding: 5px;
+      padding: 10px;
       box-sizing: border-box;
     }
 
     button {
+      position: relative;
+      align-self: center;
       background-color: rgb(79, 199, 78);
       color: white;
       padding: 10px;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 1vh;
       font-family: 'Be Vietnam', sans-serif;
       text-align: center;
       font-size: x-large;
