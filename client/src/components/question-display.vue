@@ -56,7 +56,6 @@
     import axios from 'axios';
     import AnswerButtons from './answer-buttons.vue';
     import NumericAnswer from './numericAnswer.vue';
-    const ws = import.meta.env.VITE_VUE_APP_WS;
     const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
 
     export default{

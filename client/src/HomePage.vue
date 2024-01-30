@@ -1,6 +1,16 @@
 <template>
     <div class="app-container">
-      <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay>
+      <div>
+        <div v-if="socketValue === 0">
+          LandingPage
+        </div>
+        <div v-else-if="socketValue%2 === 1 && socketValue <= 20">
+          <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay>
+        </div>
+        <div v-else-if="socketValue%2 === 0 && socketValue <= 20">
+          EvaluationPage
+        </div>
+      </div>
     </div>
   </template>
   
