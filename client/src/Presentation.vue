@@ -46,7 +46,6 @@
         Welches historisches Ereignis könnte als Filmtitel für eine Komödie dienen?
       </div>
     </div>
-  
     <div v-if="socketValue === 2">
       <div class="row first-row">
         <div class="column">
@@ -209,9 +208,11 @@
     align-items: center;
     justify-content: center;
     height:100%;
+    width:100%;
     color: white;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4em;
+    text-align: center;
   }
 
   .separator-horizontal {
