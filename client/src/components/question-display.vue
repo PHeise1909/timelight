@@ -29,6 +29,7 @@
     background-image: url(@/assets/Polygon.png);
     background-position-x: center;
     background-position-y: 0%;
+    background-size: 100%;
   }
 
   .question {
