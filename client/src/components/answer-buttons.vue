@@ -21,10 +21,9 @@
     }
 
     .mt-10 {
-        width: 100%;
-        margin-top: 10px;
-        padding-top: 30px;
-        padding-bottom: 50px; 
+        width: 90%;
+        padding-top: 5vh;
+        padding-bottom: 8vh; 
         border-radius: 0px; 
         text-align: center;
         text-overflow: clip; 
