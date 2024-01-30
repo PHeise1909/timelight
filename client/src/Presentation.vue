@@ -387,7 +387,7 @@ export default {
       } else if (max === this.averageEvaluation.green.average) {
         group = 'green';
       }
-      return `${group} war im durchschnitt am öftesten hier. Ganze ${max} mal!`;
+      return `Gruppe ${group} war im Durchschnitt am öftesten hier. Ganze ${max} mal!`;
     },
     getGif(answer){
       switch(answer) {
