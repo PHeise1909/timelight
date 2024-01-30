@@ -1,5 +1,12 @@
 <template>
   <div class="background">
+    <div class="picture-begruessung" v-if="socketValue === -1"> 
+      <img style="height: 95vh" src="./assets/Allgemein/EMI-Surfing-4.png">
+    </div>
+    <div class="begruessung" v-if="socketValue === -1">
+        <div style="font-size: 8.2em; text-transform: uppercase">Willkommen zu Timelight!</div>
+        <p style="font-size: 4em">Gleich geht's los...</p>
+    </div>
     <div class="element-question">
       <div v-if="socketValue === 0">
         Welches Jahrzehnt hatte die beste Musik?
@@ -124,8 +131,21 @@
 </template>
 
 <style scoped>
+    .begruessung{
+    position: absolute;
+    top: 20%;
+    left: 3%;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .picture-begruessung{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
     .background{
-      background-image: url('./assets/Background-highRes.png');
+      background-image: url('./assets/Allgemein/Background-highRes.png');
       background-size: cover;
       height: 100vh;
       background-color: rgb(108,21,173);
