@@ -50,22 +50,23 @@
       <div class="separator-vertical"></div>
       <div class="row second-row">
         <div class="column">
-          <img style="height: 66.66vh; width: 66.66vh" class="center-image" src="./assets/Musik/rickroll.gif">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.blue.answer)">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <img style="height: 66.66vh; width: 66.66vh" class="center-image" src="./assets/Musik/barbie.gif">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.red.answer)">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <img style="height: 66.66vh; width: 66.66vh" class="center-image" src="./assets/Musik/nickelback.gif">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.green.answer)">
         </div>
       </div>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 4">
-      Eine Galápagos-Riesenschildkröte würde für die Strecke 
-       <p style="font-size: 3em;">20 Jahre</p> 
+      <p>Gruppe {{ numericAnswer.zone }} wohnt insgesamt {{numericAnswer.distance}} km entfernt.</p>
+      <p>Eine Galápagos-Riesenschildkröte würde für die Strecke </p>
+       <p style="font-size: 3em;"> {{ numericAnswer.time }} Tage</p> 
       <p>benötigen</p>
     </div>
 
@@ -225,6 +226,8 @@
 
 <script>
 import confetti from "canvas-confetti";
+import axios from 'axios';
+const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
 
 export default {
   components: {
@@ -235,6 +238,12 @@ export default {
       socketValue: 0,
       socket: null,
       isCelebrate: false,
+      evaluationAnswers: {
+        blue: { answer: '', percentage: 0},
+        red: { answer: '', percentage: 0},
+        green: { answer: '', percentage: 0},
+      },
+      numericAnswer: {zone: '', distance: '', time: ''}
     };
   },
   created() {
@@ -246,7 +255,14 @@ export default {
       if (newValue === 21) {
         this.celebrate();
       }
+      else if(newValue === 2){
+        this.getEvaluation();
+      }
+      else if(newValue === 4){
+        this.getNumericEvaluation();
+      }
     },
+    
   },
 
   methods: {
@@ -269,6 +285,46 @@ export default {
         disableForReducedMotion: true,
       });
     },
+    async getEvaluation() {
+      try {
+        const response = await axios.get(`${backend}/eval`);
+        this.processEvaluation(response.data);
+      } catch (error) {
+        console.error('Fehler beim Evaluieren!', error);
+      }
+    },
+    async getNumericEvaluation() {
+      try {
+        const response = await axios.get(`${backend}/eval`);
+        this.numericAnswer = response.data.answerReturn;
+        console.log(this.numericAnswer.answerReturn);
+      } catch (error) {
+        console.error('Fehler beim Evaluieren!', error);
+      }
+    },
+    processEvaluation(data) {
+      // Überprüfe, ob die Antwort Daten enthält
+      if (data && Object.keys(data).length > 0) {
+        this.evaluationAnswers = data.answerReturn; // Setze die Antwort in die Daten des Komponenten
+        console.log(JSON.stringify(this.evaluationAnswers));
+      } else {
+        console.error('Ungültige Antwort vom Backend erhalten.');
+      }
+    },
+    getGif(answer){
+      switch(answer) {
+        case '80er Jahre':
+          return "src/assets/Musik/rickroll.gif"
+        case '90er Jahre':
+          return "src/assets/Musik/barbie.gif";
+        case '2000er Jahre':
+          return "src/assets/Musik/nickelback.gif";
+        case '2010er Jahre':
+          return "src/assets/Musik/thriftShop.gif";
+        default:
+          return ""; 
+      }
+    }
   },
 };
 </script>
