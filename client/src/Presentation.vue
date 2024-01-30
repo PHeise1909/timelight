@@ -49,7 +49,7 @@
     <div v-if="socketValue === 2">
       <div class="row first-row">
         <div class="column">
-          <p class="center-text">Welches Jahrzehnt hatte die beste Musik?</p>
+          <p class="center-text text">Welches Jahrzehnt hatte die beste Musik?</p>
         </div>
       </div>
       <div class="separator-vertical"></div>
@@ -73,12 +73,13 @@
       <p>Eine Galápagos-Riesenschildkröte würde für die Strecke </p>
        <p style="font-size: 3em;"> {{ numericAnswer.time }} Tage</p> 
       <p>benötigen</p>
+      <img style="height: 30vh" src="./assets/Weg/galapagos.gif">
     </div>
 
     <div v-if="socketValue === 6">
       <div class="row first-row">
         <div class="column">
-          <p class="center-text">Was war euer erstes Mobiltelefon?</p>
+          <p class="center-text text">Was war euer erstes Mobiltelefon?</p>
         </div>
       </div>
       <div class="separator-vertical"></div>
@@ -122,28 +123,32 @@
     <div class="frage-allgemein" v-if="socketValue === 10">
       {{getMaxAverageGroup()}}
     </div>
-     
+
     <div class="frage-allgemein" v-if="socketValue === 12">
-      Das Holstentor ist 
-       <p style="font-size: 3em;">20 Jahre jünger/ älter </p> 
-      <p>als ihr</p>
+      Ihr solltet euch alt fühlen, selbst das Holstentor ist 
+       <p style="font-size: 3em;">20 Jahre jünger</p> 
+      <p>als ihr alle zusammen</p>
     </div> 
 
     <div class="frage-allgemein" v-if="socketValue === 14">
-      Ihr liebt es einfach früh aufzustehen!
+      Gruppe B, ihr liebt es einfach früh aufzustehen!
       <img class="center-image" src="./assets/Aufstehen/Frühaufsteher.gif"> 
     </div>
 
-    <div class="frage-allgemein" v-if="socketValue === 16">
+    <div style="font-size: 25vw" class="frage-allgemein" v-if="socketValue === 16">
       Radikal!
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 18">
-      Zeitraffer
+      <p>Blau: {{evaluationAnswers.blue.answer}}</p>
+      <p>Grün: {{evaluationAnswers.green.answer}}</p>
+      <p>Rot: {{evaluationAnswers.red.answer}}</p>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 20">
-      AI generiertes Bild
+      <p>Blau: {{evaluationAnswers.blue.answer}}</p>
+      <p>Grün: {{evaluationAnswers.green.answer}}</p>
+      <p>Rot: {{evaluationAnswers.red.answer}}</p>
     </div>
 
     <div ref="celebrate" v-if="socketValue === 21"> </div>
@@ -247,6 +252,9 @@
 
   .center-text {
     text-align: center;
+  }
+
+  .text{
     color: white;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4em;
@@ -309,6 +317,21 @@ export default {
       }
       else if(newValue === 10){
         this.getAverageEvaluation();
+      }
+      else if(newValue === 12){
+        this.getEvaluation();
+      }
+      else if(newValue === 14){
+        this.getEvaluation();
+      }
+      else if(newValue === 16){
+        this.getEvaluation();
+      }
+      else if(newValue === 18){
+        this.getEvaluation();
+      }
+      else if(newValue === 20){
+        this.getEvaluation();
       }
     },
     
@@ -388,6 +411,26 @@ export default {
         group = 'green';
       }
       return `Gruppe ${group} war im Durchschnitt am öftesten hier. Ganze ${max} mal!`;
+    },
+    getMaxSum(){
+      const maxSum = Math.max(
+        this.evaluationAnswers.blue.sum,
+        this.evaluationAnswers.red.sum,
+        this.evaluationAnswers.green.sum
+      );
+      return maxSum.toString();
+    },
+    getOldestGroup() {
+      let oldestGroup = '';
+      let maxSum = -Infinity;
+
+      for (const [group, data] of Object.entries(this.evaluationAnswers)) {
+        if (data.sum > maxSum) {
+          maxSum = data.sum;
+          oldestGroup = group;
+        }
+      }
+      return oldestGroup;
     },
     getGif(answer){
       switch(answer) {
