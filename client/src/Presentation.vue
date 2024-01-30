@@ -120,7 +120,7 @@
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 10">
-      Im Durchschnitt 2 mal
+      {{getMaxAverageGroup()}}
     </div>
      
     <div class="frage-allgemein" v-if="socketValue === 12">
@@ -278,7 +278,12 @@ export default {
         red: { answer: '', percentage: 0},
         green: { answer: '', percentage: 0},
       },
-      numericAnswer: {zone: '', distance: '', time: ''}
+      numericAnswer: {zone: '', distance: '', time: ''},
+      averageEvaluation: {
+        blue: { average: 0},
+        green: { average: 0},
+        red: { average: 0},
+      }
     };
   },
   created() {
@@ -301,6 +306,9 @@ export default {
       }
       else if(newValue === 8){
         this.getEvaluation();
+      }
+      else if(newValue === 10){
+        this.getAverageEvaluation();
       }
     },
     
@@ -343,6 +351,23 @@ export default {
         console.error('Fehler beim Evaluieren!', error);
       }
     },
+    async getAverageEvaluation() {
+      try {
+        const response = await axios.get(`${backend}/eval`);
+        this.processAverageEvaluation(response.data);
+      } catch (error) {
+        console.error('Fehler beim Abrufen der durchschnittlichen Bewertung!', error);
+      }
+    },
+    processAverageEvaluation(data) {
+      // Überprüfe, ob die Antwort Daten enthält
+      if (data && Object.keys(data).length > 0) {
+        this.averageEvaluation = data.answerReturn; // Setze die Antwort in die Daten des Komponenten
+        console.log(JSON.stringify(this.averageEvaluation));
+      } else {
+        console.error('Ungültige Antwort vom Backend erhalten.');
+      }
+    },
     processEvaluation(data) {
       // Überprüfe, ob die Antwort Daten enthält
       if (data && Object.keys(data).length > 0) {
@@ -351,6 +376,18 @@ export default {
       } else {
         console.error('Ungültige Antwort vom Backend erhalten.');
       }
+    },
+    getMaxAverageGroup() {
+      const max = Math.max(this.averageEvaluation.blue.average, this.averageEvaluation.red.average, this.averageEvaluation.green.average);
+      let group = '';
+      if (max === this.averageEvaluation.blue.average) {
+        group = 'blue';
+      } else if (max === this.averageEvaluation.red.average) {
+        group = 'red';
+      } else if (max === this.averageEvaluation.green.average) {
+        group = 'green';
+      }
+      return `${group} war im durchschnitt am öftesten hier. Ganze ${max} mal!`;
     },
     getGif(answer){
       switch(answer) {
