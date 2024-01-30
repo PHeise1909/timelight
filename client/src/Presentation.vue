@@ -1,12 +1,18 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="background">
-    <div class="picture-begruessung" v-if="socketValue === 0"> 
-      <img style="height: 95vh" src="./assets/Allgemein/EMI-Surfing-4.png">
-    </div>
-    <div class="begruessung" v-if="socketValue === 0">
-        <div style="font-size: 8.2em; text-transform: uppercase">Willkommen zu Timelight!</div>
-        <p style="font-size: 4em">Gleich geht's los...</p>
+    <div class="flex-container"> 
+      <div class="left-side" v-if="socketValue === 0"> 
+        <div class="text-container">
+          <div class="abstand" style="font-size: 6vw; text-transform: uppercase">Willkommen</div>
+          <div class="abstand" style="font-size: 6vw; text-transform: uppercase">zu TimeLight!</div>
+          <div class="abstand" style="font-size: 3vw">Gleich geht's los...</div>
+        </div> 
+        <div class="right-side">
+        <img style="height: 90vh; align-items: right" src="./assets/Allgemein/EMI-Surfing.png">
+      </div>
+      </div>
+         
     </div>
     <div class="element-question">
       <div v-if="socketValue === 1">
@@ -40,7 +46,6 @@
         Welches historisches Ereignis könnte als Filmtitel für eine Komödie dienen?
       </div>
     </div>
-  
     <div v-if="socketValue === 2">
       <div class="row first-row">
         <div class="column">
@@ -50,22 +55,23 @@
       <div class="separator-vertical"></div>
       <div class="row second-row">
         <div class="column">
-          <img style="height: 66.66vh; width: 66.66vh" class="center-image" src="./assets/Musik/rickroll.gif">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.blue.answer)">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <img style="height: 66.66vh; width: 66.66vh" class="center-image" src="./assets/Musik/barbie.gif">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.red.answer)">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column">
-          <img style="height: 66.66vh; width: 66.66vh" class="center-image" src="./assets/Musik/nickelback.gif">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.green.answer)">
         </div>
       </div>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 4">
-      Eine Galápagos-Riesenschildkröte würde für die Strecke 
-       <p style="font-size: 3em;">20 Jahre</p> 
+      <p>Gruppe {{ numericAnswer.zone }} wohnt insgesamt {{numericAnswer.distance}} km entfernt.</p>
+      <p>Eine Galápagos-Riesenschildkröte würde für die Strecke </p>
+       <p style="font-size: 3em;"> {{ numericAnswer.time }} Tage</p> 
       <p>benötigen</p>
     </div>
 
@@ -78,25 +84,43 @@
       <div class="separator-vertical"></div>
       <div class="row second-row">
         <div class="column" style="background-color: #7B16BD">
-          <p class="center-text">Zu unserer Zeit gab es nur Backsteine</p>
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getImage(evaluationAnswers.blue.answer)">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column" style="background-color: #4E8DEA">
-          <p class="center-text">Das og Backstein-Handy von Nokia</p>
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getImage(evaluationAnswers.red.answer)">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column" style="background-color: #D833E0"> 
-          <p class="center-text">Ein Klapphandy</p>
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getImage(evaluationAnswers.green.answer)">
         </div>
       </div>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 8">
-      Gangnam Style
+      <div class="row first-row">
+        <div class="column">
+          <p class="center-text">Welches Internetphänomen war das prägendste für dich?</p>
+        </div>
+      </div>
+      <div class="separator-vertical"></div>
+      <div class="row second-row">
+        <div class="column">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.blue.answer)">
+        </div>
+        <div class="separator-horizontal"></div>
+        <div class="column">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.red.answer)">
+        </div>
+        <div class="separator-horizontal"></div>
+        <div class="column">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.green.answer)">
+        </div>
+      </div>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 10">
-      Im Durchschnitt 2 mal
+      {{getMaxAverageGroup()}}
     </div>
      
     <div class="frage-allgemein" v-if="socketValue === 12">
@@ -132,29 +156,39 @@
 </template>
 
 <style scoped>
-    .begruessung{
-    position: absolute;
-    top: 20%;
-    left: 3%;
-    color: white;
-    font-family: 'Bebas Neue', sans-serif;
+    .flex-container {
+      display: flex;
+      height: 100vh;
     }
-
-    .picture-begruessung{
+    .flex-container {
+      display: flex;
+    }
+    .left-side,
+    .right-side {
+      padding-left: 5vh;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: right; 
+    }
+    .left-side {
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .text-container {
+      text-align: left;
+    }
+    .abstand{
+      margin-bottom: 10px;
     }
     .background{
+      display: flex;
       background-image: url('./assets/Allgemein/Background-highRes.png');
       background-size: cover;
       height: 100vh;
       background-color: rgb(108,21,173);
-    }
-
-    .transparent{
-      background: rgb(108,21,173);
-      height: 100vh;
     }
 
   .element-question{
@@ -174,9 +208,11 @@
     align-items: center;
     justify-content: center;
     height:100%;
+    width:100%;
     color: white;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4em;
+    text-align: center;
   }
 
   .separator-horizontal {
@@ -225,6 +261,8 @@
 
 <script>
 import confetti from "canvas-confetti";
+import axios from 'axios';
+const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
 
 export default {
   components: {
@@ -235,6 +273,17 @@ export default {
       socketValue: 0,
       socket: null,
       isCelebrate: false,
+      evaluationAnswers: {
+        blue: { answer: '', percentage: 0},
+        red: { answer: '', percentage: 0},
+        green: { answer: '', percentage: 0},
+      },
+      numericAnswer: {zone: '', distance: '', time: ''},
+      averageEvaluation: {
+        blue: { average: 0},
+        green: { average: 0},
+        red: { average: 0},
+      }
     };
   },
   created() {
@@ -246,7 +295,23 @@ export default {
       if (newValue === 21) {
         this.celebrate();
       }
+      else if(newValue === 2){
+        this.getEvaluation();
+      }
+      else if(newValue === 4){
+        this.getNumericEvaluation();
+      }
+      else if(newValue === 6){
+        this.getEvaluation();
+      }
+      else if(newValue === 8){
+        this.getEvaluation();
+      }
+      else if(newValue === 10){
+        this.getAverageEvaluation();
+      }
     },
+    
   },
 
   methods: {
@@ -269,6 +334,97 @@ export default {
         disableForReducedMotion: true,
       });
     },
+    async getEvaluation() {
+      try {
+        const response = await axios.get(`${backend}/eval`);
+        this.processEvaluation(response.data);
+      } catch (error) {
+        console.error('Fehler beim Evaluieren!', error);
+      }
+    },
+    async getNumericEvaluation() {
+      try {
+        const response = await axios.get(`${backend}/eval`);
+        this.numericAnswer = response.data.answerReturn;
+        console.log(this.numericAnswer.answerReturn);
+      } catch (error) {
+        console.error('Fehler beim Evaluieren!', error);
+      }
+    },
+    async getAverageEvaluation() {
+      try {
+        const response = await axios.get(`${backend}/eval`);
+        this.processAverageEvaluation(response.data);
+      } catch (error) {
+        console.error('Fehler beim Abrufen der durchschnittlichen Bewertung!', error);
+      }
+    },
+    processAverageEvaluation(data) {
+      // Überprüfe, ob die Antwort Daten enthält
+      if (data && Object.keys(data).length > 0) {
+        this.averageEvaluation = data.answerReturn; // Setze die Antwort in die Daten des Komponenten
+        console.log(JSON.stringify(this.averageEvaluation));
+      } else {
+        console.error('Ungültige Antwort vom Backend erhalten.');
+      }
+    },
+    processEvaluation(data) {
+      // Überprüfe, ob die Antwort Daten enthält
+      if (data && Object.keys(data).length > 0) {
+        this.evaluationAnswers = data.answerReturn; // Setze die Antwort in die Daten des Komponenten
+        console.log(JSON.stringify(this.evaluationAnswers));
+      } else {
+        console.error('Ungültige Antwort vom Backend erhalten.');
+      }
+    },
+    getMaxAverageGroup() {
+      const max = Math.max(this.averageEvaluation.blue.average, this.averageEvaluation.red.average, this.averageEvaluation.green.average);
+      let group = '';
+      if (max === this.averageEvaluation.blue.average) {
+        group = 'blue';
+      } else if (max === this.averageEvaluation.red.average) {
+        group = 'red';
+      } else if (max === this.averageEvaluation.green.average) {
+        group = 'green';
+      }
+      return `Gruppe ${group} war im Durchschnitt am öftesten hier. Ganze ${max} mal!`;
+    },
+    getGif(answer){
+      switch(answer) {
+        case '80er Jahre':
+          return "src/assets/Musik/rickroll.gif"
+        case '90er Jahre':
+          return "src/assets/Musik/barbie.gif";
+        case '2000er Jahre':
+          return "src/assets/Musik/nickelback.gif";
+        case '2010er Jahre':
+          return "src/assets/Musik/thriftShop.gif";
+        case 'Nyan Cat':
+          return "src/assets/Internet/nyancat.gif";
+        case 'Harlem Shake':
+          return "src/assets/Internet/harlemshake.gif";
+        case 'Ice Bucket Challenge':
+          return "src/assets/Internet/iceBucket.gif";
+        case 'Planking':
+          return "src/assets/Internet/planking.gif";
+        default:
+          return ""; 
+      }
+    },
+    getImage(answer){
+      switch(answer){
+        case 'Ein Backstein':
+          return 'src/assets/Handys/backstein.jpg'
+        case 'Nokia Backstein':
+          return 'src/assets/Handys/nokia.jpg'
+        case 'Klapphandy':
+          return 'src/assets/Handys/Klapphandy.jpg'
+        case 'Smartphone':
+          return 'src/assets/Handys/Smartphone.jpg'
+        default:
+          return ""; 
+      }
+    }
   },
 };
 </script>

@@ -35,7 +35,7 @@ const sumOfAnswers = (answers) => {
     return sum;
 }
 
-evaluateQuestion = async(answersBlue, answersRed, answersGreen) => {
+evaluateQuestion = (answersBlue, answersRed, answersGreen) => {
 
     const mostCommonBlue = getMostCommonAnswer(answersBlue);
     const mostCommonRed = getMostCommonAnswer(answersRed);
@@ -63,7 +63,7 @@ evaluateQuestion = async(answersBlue, answersRed, answersGreen) => {
     return result;
 };
 
-evaluateQuestionNumeric = async(answersBlue, answersRed, answersGreen) => {
+evaluateQuestionNumeric = (answersBlue, answersRed, answersGreen) => {
 
     sumBlue = sumOfAnswers(answersBlue);
     sumRed = sumOfAnswers(answersRed);
@@ -93,12 +93,67 @@ evaluateQuestionNumeric = async(answersBlue, answersRed, answersGreen) => {
 
     return result;
 };
+const calculateAverage = (answers) => {
+    const totalAnswers = answers.length;
+    const sum = sumOfAnswers(answers);
+    return totalAnswers === 0 ? 0 : sum / totalAnswers;
+};
+const evaluateQuestionAverage = (answersBlue, answersRed, answersGreen) => {
+    const averageBlue = calculateAverage(answersBlue);
+    const averageRed = calculateAverage(answersRed);
+    const averageGreen = calculateAverage(answersGreen);
 
+    const result = {
+        blue: {
+            average: averageBlue
+        },
+        red: {
+            average: averageRed
+        },
+        green: {
+            average: averageGreen
+        }
+    };
 
+    return result;
+};
 const getEvaluation = async (req, res) => {
     try{
-        const questionIndex = req.query.questionIndex;
-        
+        const x = global.sharedValue;
+        let questionIndex;
+        switch (x){
+            case 2:
+                questionIndex = 0;
+                console.log(x);
+                break;
+            case 4:
+                questionIndex = 1;
+                break;    
+            case 6:
+                questionIndex = 2;
+                break;
+            case 8:
+                questionIndex = 3;
+                break;
+            case 10:
+                questionIndex = 4;
+                break;
+            case 12:
+                questionIndex = 5;
+                break;
+            case 14:
+                questionIndex = 6;
+                break;
+            case 16:
+                questionIndex = 7;
+                break;
+            case 18:
+                questionIndex = 8;
+                break;
+            case 20:
+                questionIndex = 9;
+                break;
+            }
         if (isNaN(questionIndex)) {
             return res.status(400).json({ error: 'Ungültiger Frage-Index' });
         }
@@ -107,21 +162,22 @@ const getEvaluation = async (req, res) => {
         const usersGreen = await User.find({zone: "green"});
         const usersRed = await User.find({zone: "red"});
         
-        const answersBlue = usersBlue.map(user => user.answers[questionIndex-10]);
-        const answersGreen = usersGreen.map(user => user.answers[questionIndex-10]);
-        const answersRed = usersRed.map(user => user.answers[questionIndex-10]);
+        const answersBlue = usersBlue.map(user => user.answers[questionIndex]);
+        const answersGreen = usersGreen.map(user => user.answers[questionIndex]);
+        const answersRed = usersRed.map(user => user.answers[questionIndex]);
 
         let answerReturn = {};
-        if(global.sharedValue === 10 || global.sharedValue === 12 || global.sharedValue === 13 || global.sharedValue === 16  || global.sharedValue === 17 || global.sharedValue === 18 || global.sharedValue === 19){
-            console.log(global.sharedValue);
+        if(global.sharedValue === 2 || global.sharedValue === 6 || global.sharedValue === 8 || global.sharedValue === 14  || global.sharedValue === 16 || global.sharedValue === 18 || global.sharedValue === 20){
             answerReturn = evaluateQuestion(answersBlue, answersRed, answersGreen);
-        } else if(global.sharedValue === 11 || global.sharedValue === 14 || global.sharedValue === 15){
-            console.log(global.sharedValue);
+        } else if(global.sharedValue === 4 || global.sharedValue === 12){
             answerReturn = evaluateQuestionNumeric(answersBlue, answersRed, answersGreen);
+        } else if(global.sharedValue === 10){
+            answerReturn = evaluateQuestionAverage(answersBlue, answersRed, answersGreen);
         } else {
             console.log('No Questions left');
         }
         console.log(answerReturn);
+        console.log(global.sharedValue);
         res.status(200).json({
             answerReturn
         });
