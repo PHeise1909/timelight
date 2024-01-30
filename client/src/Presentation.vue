@@ -85,21 +85,39 @@
       <div class="separator-vertical"></div>
       <div class="row second-row">
         <div class="column" style="background-color: #7B16BD">
-          <p class="center-text">Zu unserer Zeit gab es nur Backsteine</p>
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getImage(evaluationAnswers.blue.answer)">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column" style="background-color: #4E8DEA">
-          <p class="center-text">Das og Backstein-Handy von Nokia</p>
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getImage(evaluationAnswers.red.answer)">
         </div>
         <div class="separator-horizontal"></div>
         <div class="column" style="background-color: #D833E0"> 
-          <p class="center-text">Ein Klapphandy</p>
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getImage(evaluationAnswers.green.answer)">
         </div>
       </div>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 8">
-      Gangnam Style
+      <div class="row first-row">
+        <div class="column">
+          <p class="center-text">Welches Internetphänomen war das prägendste für dich?</p>
+        </div>
+      </div>
+      <div class="separator-vertical"></div>
+      <div class="row second-row">
+        <div class="column">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.blue.answer)">
+        </div>
+        <div class="separator-horizontal"></div>
+        <div class="column">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.red.answer)">
+        </div>
+        <div class="separator-horizontal"></div>
+        <div class="column">
+          <img style="height: 66.66vh; width: 66.66vh" class="center-image" :src="getGif(evaluationAnswers.green.answer)">
+        </div>
+      </div>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 10">
@@ -277,6 +295,12 @@ export default {
       else if(newValue === 4){
         this.getNumericEvaluation();
       }
+      else if(newValue === 6){
+        this.getEvaluation();
+      }
+      else if(newValue === 8){
+        this.getEvaluation();
+      }
     },
     
   },
@@ -337,6 +361,28 @@ export default {
           return "src/assets/Musik/nickelback.gif";
         case '2010er Jahre':
           return "src/assets/Musik/thriftShop.gif";
+        case 'Nyan Cat':
+          return "src/assets/Internet/nyancat.gif";
+        case 'Harlem Shake':
+          return "src/assets/Internet/harlemshake.gif";
+        case 'Ice Bucket Challenge':
+          return "src/assets/Internet/iceBucket.gif";
+        case 'Planking':
+          return "src/assets/Internet/planking.gif";
+        default:
+          return ""; 
+      }
+    },
+    getImage(answer){
+      switch(answer){
+        case 'Ein Backstein':
+          return 'src/assets/Handys/backstein.jpg'
+        case 'Nokia Backstein':
+          return 'src/assets/Handys/nokia.jpg'
+        case 'Klapphandy':
+          return 'src/assets/Handys/Klapphandy.jpg'
+        case 'Smartphone':
+          return 'src/assets/Handys/Smartphone.jpg'
         default:
           return ""; 
       }
