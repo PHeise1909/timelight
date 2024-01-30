@@ -124,26 +124,37 @@
     </div>
      
     <div class="frage-allgemein" v-if="socketValue === 12">
+      <p>Gruppe {{ getOldestGroup() }} ist die Älteste. Ihr seid {{getMaxSum()}} Jahre alt.</p>
       Das Holstentor ist 
-       <p style="font-size: 3em;">20 Jahre jünger/ älter </p> 
+       <p style="font-size: 3em;">
+        {{ Math.abs(evaluationAnswers[getOldestGroup()].diff) }} Jahre 
+        {{ evaluationAnswers[getOldestGroup()].diff <= 0 ? 'älter' : 'jünger' }} 
+      </p> 
       <p>als ihr</p>
     </div> 
 
     <div class="frage-allgemein" v-if="socketValue === 14">
-      Ihr liebt es einfach früh aufzustehen!
-      <img class="center-image" src="./assets/Aufstehen/Frühaufsteher.gif"> 
+      <p>Blau: {{evaluationAnswers.blue.answer}}</p>
+      <p>Grün: {{evaluationAnswers.green.answer}}</p>
+      <p>Rot: {{evaluationAnswers.red.answer}}</p>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 16">
-      Radikal!
+      <p>Blau: {{evaluationAnswers.blue.answer}}</p>
+      <p>Grün: {{evaluationAnswers.green.answer}}</p>
+      <p>Rot: {{evaluationAnswers.red.answer}}</p>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 18">
-      Zeitraffer
+      <p>Blau: {{evaluationAnswers.blue.answer}}</p>
+      <p>Grün: {{evaluationAnswers.green.answer}}</p>
+      <p>Rot: {{evaluationAnswers.red.answer}}</p>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 20">
-      AI generiertes Bild
+      <p>Blau: {{evaluationAnswers.blue.answer}}</p>
+      <p>Grün: {{evaluationAnswers.green.answer}}</p>
+      <p>Rot: {{evaluationAnswers.red.answer}}</p>
     </div>
 
     <div ref="celebrate" v-if="socketValue === 21"> </div>
@@ -310,6 +321,21 @@ export default {
       else if(newValue === 10){
         this.getAverageEvaluation();
       }
+      else if(newValue === 12){
+        this.getEvaluation();
+      }
+      else if(newValue === 14){
+        this.getEvaluation();
+      }
+      else if(newValue === 16){
+        this.getEvaluation();
+      }
+      else if(newValue === 18){
+        this.getEvaluation();
+      }
+      else if(newValue === 20){
+        this.getEvaluation();
+      }
     },
     
   },
@@ -388,6 +414,26 @@ export default {
         group = 'green';
       }
       return `Gruppe ${group} war im Durchschnitt am öftesten hier. Ganze ${max} mal!`;
+    },
+    getMaxSum(){
+      const maxSum = Math.max(
+        this.evaluationAnswers.blue.sum,
+        this.evaluationAnswers.red.sum,
+        this.evaluationAnswers.green.sum
+      );
+      return maxSum.toString();
+    },
+    getOldestGroup() {
+      let oldestGroup = '';
+      let maxSum = -Infinity;
+
+      for (const [group, data] of Object.entries(this.evaluationAnswers)) {
+        if (data.sum > maxSum) {
+          maxSum = data.sum;
+          oldestGroup = group;
+        }
+      }
+      return oldestGroup;
     },
     getGif(answer){
       switch(answer) {
