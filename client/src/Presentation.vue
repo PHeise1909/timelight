@@ -1,12 +1,18 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="background">
-    <div class="picture-begruessung" v-if="socketValue === 0"> 
-      <img style="height: 95vh" src="./assets/Allgemein/EMI-Surfing-4.png">
-    </div>
-    <div class="begruessung" v-if="socketValue === 0">
-        <div style="font-size: 8.2em; text-transform: uppercase">Willkommen zu Timelight!</div>
-        <p style="font-size: 4em">Gleich geht's los...</p>
+    <div class="flex-container"> 
+      <div class="left-side" v-if="socketValue === 0"> 
+        <div class="text-container">
+          <div class="abstand" style="font-size: 6vw; text-transform: uppercase">Willkommen</div>
+          <div class="abstand" style="font-size: 6vw; text-transform: uppercase">zu TimeLight!</div>
+          <div class="abstand" style="font-size: 3vw">Gleich geht's los...</div>
+        </div> 
+        <div class="right-side">
+        <img style="height: 90vh; align-items: right" src="./assets/Allgemein/EMI-Surfing.png">
+      </div>
+      </div>
+         
     </div>
     <div class="element-question">
       <div v-if="socketValue === 1">
@@ -132,29 +138,39 @@
 </template>
 
 <style scoped>
-    .begruessung{
-    position: absolute;
-    top: 20%;
-    left: 3%;
-    color: white;
-    font-family: 'Bebas Neue', sans-serif;
+    .flex-container {
+      display: flex;
+      height: 100vh;
     }
-
-    .picture-begruessung{
+    .flex-container {
+      display: flex;
+    }
+    .left-side,
+    .right-side {
+      padding-left: 5vh;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: right; 
+    }
+    .left-side {
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .text-container {
+      text-align: left;
+    }
+    .abstand{
+      margin-bottom: 10px;
     }
     .background{
+      display: flex;
       background-image: url('./assets/Allgemein/Background-highRes.png');
       background-size: cover;
       height: 100vh;
       background-color: rgb(108,21,173);
-    }
-
-    .transparent{
-      background: rgb(108,21,173);
-      height: 100vh;
     }
 
   .element-question{
