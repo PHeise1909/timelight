@@ -64,6 +64,7 @@
                         answer
                     });
                     console.log('Antwort erfolgreich gespeichert!');
+                    this.$emit('answerSelected')
                 }
                 catch (error){
                     console.error('Fehler beim speichern der Antwort!', error)

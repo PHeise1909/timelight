@@ -4,8 +4,11 @@
         <div v-if="socketValue === 0">
           <LandingPage></LandingPage>
         </div>
-        <div v-else-if="socketValue%2 === 1 && socketValue <= 20">
-          <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay>
+        <div v-else-if="socketValue%2 === 1 && socketValue <= 20 && questionAnswered == false">
+          <QuestionDisplay :initialQuestion="socketValue" @answerSelected="handleAnswerSelected"></QuestionDisplay>
+        </div>
+        <div v-else-if="socketValue%2 === 1 && socketValue <= 20 && questionAnswered == true">
+          <EvaluationDisplay></EvaluationDisplay>
         </div>
         <div v-else-if="socketValue%2 === 0 && socketValue <= 20">
           <EvaluationDisplay></EvaluationDisplay>
@@ -42,6 +45,7 @@
         recognizedParameter: null,
         socketValue: 0,
         socket: null,
+        questionAnswered: false
       }
     },
     mounted() {
@@ -80,9 +84,21 @@
         const data = JSON.parse(event.data);
         if(data.type === 'update'){
           this.socketValue = data.value;
-        }
-      });
+          }
+        });
+      },
+      handleAnswerSelected(){
+        this.questionAnswered = true;
+        console.log(this.questionAnswered);
+      },
     },
+    watch: {
+      socketValue(newValue){
+        if(newValue !== 0 && this.questionAnswered){
+          this.questionAnswered = false;
+
+        }
+      }
     }
   }
   </script>

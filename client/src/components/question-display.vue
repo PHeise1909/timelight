@@ -4,7 +4,7 @@
 
       <div style="color:white" v-if="questions[initialQuestion].type === 'single-choice'">
         <div class="question">{{ questions[initialQuestion].question }}</div>
-        <AnswerButtons class="buttons" :answers="getAnswers()" :questionNr="initialQuestion" @answerSelected="logAnswer" />
+        <AnswerButtons class="buttons" :answers="getAnswers()" :questionNr="initialQuestion" @answerSelected="handleAnswerSelected" />
       </div>
       
       <div style="color:white" v-else-if="questions[initialQuestion].type === 'numeric'">
@@ -103,6 +103,9 @@
           } else{
             return [];
           }
+        },
+        handleAnswerSelected() {
+            this.$emit('answerSelected');
         }
       }
     }

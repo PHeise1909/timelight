@@ -3,14 +3,11 @@
     <div class="color-box" style="background-color: rgb(108,21,173);">
       <div>
         <div v-if="socketValue === 0">
-          Landing Page
           <LandingPage></LandingPage>
         </div>
         <div v-else-if="socketValue%2 === 1 && socketValue <= 20" >
-          Question
           <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay></div>
         <div v-else-if="socketValue%2 === 0 && socketValue <= 20">
-          Evaluation Slide
           <EvaluationDisplay></EvaluationDisplay>
         </div>
       </div>
