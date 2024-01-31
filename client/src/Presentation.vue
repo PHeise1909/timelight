@@ -126,7 +126,7 @@
 
     <div class="frage-allgemein" v-if="socketValue === 12">
       Ihr solltet euch alt fühlen, selbst das Holstentor ist 
-       <p style="font-size: 3em;">20 Jahre jünger</p> 
+       <p style="font-size: 3em;">{{getAgeDiff()}}</p> 
       <p>als ihr alle zusammen</p>
     </div> 
 
@@ -135,8 +135,10 @@
       <img class="center-image" src="./assets/Aufstehen/Frühaufsteher.gif"> 
     </div>
 
-    <div style="font-size: 25vw" class="frage-allgemein" v-if="socketValue === 16">
-      Radikal!
+    <div style="font-size: 3em" class="frage-allgemein" v-if="socketValue === 16">
+      <p>Blau: {{evaluationAnswers.blue.answer}}</p>
+      <p>Grün: {{evaluationAnswers.green.answer}}</p>
+      <p>Rot: {{evaluationAnswers.red.answer}}</p>
     </div>
 
     <div class="frage-allgemein" v-if="socketValue === 18">
@@ -420,17 +422,22 @@ export default {
       );
       return maxSum.toString();
     },
-    getOldestGroup() {
-      let oldestGroup = '';
-      let maxSum = -Infinity;
-
-      for (const [group, data] of Object.entries(this.evaluationAnswers)) {
-        if (data.sum > maxSum) {
-          maxSum = data.sum;
-          oldestGroup = group;
-        }
+    getAgeDiff(){
+      
+      const ageDiff = 2024 - 1478;
+      let sum = this.evaluationAnswers.blue.sum + this.evaluationAnswers.green.sum + this.evaluationAnswers.red.sum;
+      console.log(typeof sum);
+      let groupAgeDiff = sum - ageDiff;
+      console.log(sum);
+      console.log(ageDiff);
+      console.log(groupAgeDiff);
+      if(groupAgeDiff > 0){
+        return groupAgeDiff + " Jahre jünger";
+      } else if(groupAgeDiff < 0){
+        return -groupAgeDiff + "Jahre älter";
+      } else{
+        return "Die Gruppe ist genauso alt wie das Holstentor" + sum + "Jahre!"
       }
-      return oldestGroup;
     },
     getGif(answer){
       switch(answer) {
