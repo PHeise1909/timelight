@@ -4,12 +4,14 @@
       <div>
         <div v-if="socketValue === 0">
           Landing Page
+          <LandingPage></LandingPage>
         </div>
         <div v-else-if="socketValue%2 === 1 && socketValue <= 20" >
           Question
           <QuestionDisplay :initialQuestion="socketValue"></QuestionDisplay></div>
         <div v-else-if="socketValue%2 === 0 && socketValue <= 20">
           Evaluation Slide
+          <EvaluationDisplay></EvaluationDisplay>
         </div>
       </div>
     </div>
@@ -49,13 +51,17 @@
 <script>
 import QuestionDisplay from './components/question-display.vue';
 import Timer from './components/BaseTimer.vue';
+import LandingPage from './components/landingPage.vue'
+import EvaluationDisplay from './components/evaluation-display.vue'
 import axios from 'axios';
 const ws = import.meta.env.VITE_VUE_APP_WS;
 const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
 
 export default {
   components: {
+    LandingPage,
     QuestionDisplay,
+    EvaluationDisplay,
     Timer,
   },
   data() {

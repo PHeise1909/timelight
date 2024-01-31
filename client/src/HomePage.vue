@@ -27,6 +27,7 @@
   <script>
   import QuestionDisplay from './components/question-display.vue'
   import LandingPage from './components/landingPage.vue'
+  import EvaluationDisplay from './components/evaluation-display.vue'
   import axios from 'axios';
   const ws = import.meta.env.VITE_VUE_APP_WS;
   const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
@@ -34,6 +35,7 @@
     components: {
       LandingPage,
       QuestionDisplay,
+      EvaluationDisplay,
     },
     data(){
       return{

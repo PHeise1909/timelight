@@ -26,7 +26,7 @@
     align-items: center;
     justify-content: space-around;
     height:100%;
-    background-image: url(@/assets/Polygon.png);
+    background-image: url(@/assets/Allgemein/PolygonQuestion.png);
     background-position-x: center;
     background-position-y: 0%;
     background-size: 100%;
