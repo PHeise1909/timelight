@@ -31,7 +31,7 @@
         Das wievielte Mal nimmst du am Meet-Up teil?
       </div>
       <div v-if="socketValue === 11">
-        Wie alt fühlst du dich?
+        Wie alt bist du?
       </div>
       <div v-if="socketValue === 13">
         Was ist deine bevorzugte Zeit für Vorlesungen?
@@ -71,7 +71,7 @@
     <div class="frage-allgemein" v-if="socketValue === 4">
       <p>Gruppe {{ numericAnswer.zone }} wohnt insgesamt {{numericAnswer.distance}} km entfernt.</p>
       <p>Eine Galápagos-Riesenschildkröte würde für die Strecke </p>
-       <p style="font-size: 3em;"> {{ numericAnswer.time }} Tage</p> 
+       <p style="font-size: 3em;"> {{ Math.round(numericAnswer.time) }} Tage</p> 
       <p>benötigen</p>
       <img style="height: 30vh" src="./assets/Weg/galapagos.gif">
     </div>
@@ -436,7 +436,7 @@ export default {
       } else if(groupAgeDiff < 0){
         return -groupAgeDiff + "Jahre älter";
       } else{
-        return "Die Gruppe ist genauso alt wie das Holstentor" + sum + "Jahre!"
+        return "Ihr seit genauso alt wie das Holstentor, " + sum + "Jahre!"
       }
     },
     getGif(answer){

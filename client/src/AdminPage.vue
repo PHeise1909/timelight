@@ -17,10 +17,6 @@
       <v-btn class="button" size="x-large" color="green" @click="nextQuestion()" style="margin-rigt: 10px">Nächste Frage</v-btn>
       <v-btn class="button" size="x-large" color="red" @click="decrementValue()">Vorherige Frage</v-btn>
     </div>
-    <div class="color-box" style="background-color: rgb(108,21,173);">
-      <v-btn @click="getEvaluation()">Get Evaluation</v-btn>
-    </div>
-    <div class="color-box" style="background-color: rgb(108,21,173);"></div>
   </div>
 </template>
 
@@ -28,7 +24,6 @@
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     height: 100vh;
   }
   .color-box {

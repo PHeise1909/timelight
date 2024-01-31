@@ -70,7 +70,7 @@
         if(localStorage.getItem("User") === null){
           try{
             console.log("Neuer User wird erstellt")
-            const response = await axios.get(`${backend}/setUser`, {zone: this.recognizedParameter});
+            const response = await axios.get(`${backend}/setUser`, {params: {zone: this.recognizedParameter}});
             console.log(response.data._id);
             localStorage.setItem('User', response.data._id)
           } catch{

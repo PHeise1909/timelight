@@ -113,6 +113,7 @@
               position: this.initialQuestion,
               answer: this.numericAnswer.toString(),
             });
+            this.$emit('answerSelected')
             console.log('Numerische Antwort erfolgreich gespeichert!');
           } catch (error) {
             console.error('Fehler beim Speichern der numerischen Antwort!', error);

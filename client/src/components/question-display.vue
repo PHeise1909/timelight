@@ -8,7 +8,7 @@
       </div>
       
       <div style="color:white" v-else-if="questions[initialQuestion].type === 'numeric'">
-        <NumericAnswer  :question="questions[initialQuestion].question" :initialQuestion="initialQuestion" />
+        <NumericAnswer  :question="questions[initialQuestion].question" :initialQuestion="initialQuestion" @answerSelected="handleAnswerSelected" />
       </div>
 
       <div v-else>

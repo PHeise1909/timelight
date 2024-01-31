@@ -150,35 +150,34 @@ const getEvaluation = async (req, res) => {
         let questionIndex;
         switch (x){
             case 2:
-                questionIndex = 0;
-                console.log(x);
+                questionIndex = 1;
                 break;
             case 4:
-                questionIndex = 1;
+                questionIndex = 3;
                 break;    
             case 6:
-                questionIndex = 2;
-                break;
-            case 8:
-                questionIndex = 3;
-                break;
-            case 10:
-                questionIndex = 4;
-                break;
-            case 12:
                 questionIndex = 5;
                 break;
-            case 14:
-                questionIndex = 6;
-                break;
-            case 16:
+            case 8:
                 questionIndex = 7;
                 break;
+            case 10:
+                questionIndex = 9;
+                break;
+            case 12:
+                questionIndex = 11;
+                break;
+            case 14:
+                questionIndex = 13;
+                break;
+            case 16:
+                questionIndex = 15;
+                break;
             case 18:
-                questionIndex = 8;
+                questionIndex = 17;
                 break;
             case 20:
-                questionIndex = 9;
+                questionIndex = 19;
                 break;
             }
         if (isNaN(questionIndex)) {

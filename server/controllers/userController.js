@@ -4,7 +4,7 @@ const setUser = async (req, res) => {
     try{
         console.log("Save user");
 
-        const user = new User({zone: 'blue'});
+        const user = new User({zone: req.query.zone});
         savedUser = await user.save();
         res.status(201).json({ _id: savedUser._id, message: 'Daten erfolgreich hinzugefügt'});
     } catch {
