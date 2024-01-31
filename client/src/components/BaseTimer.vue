@@ -22,8 +22,8 @@
   
   <script>
   const FULL_DASH_ARRAY = 283;
-  const WARNING_THRESHOLD = 30;
-  const ALERT_THRESHOLD = 10;
+  const WARNING_THRESHOLD = 20;
+  const ALERT_THRESHOLD = 5;
   
   const COLOR_CODES = {
     info: {
@@ -39,7 +39,7 @@
     }
   };
   
-  const TIME_LIMIT = 60;
+  const TIME_LIMIT = 30;
   
   export default {
     data() {
