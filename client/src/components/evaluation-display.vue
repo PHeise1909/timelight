@@ -15,6 +15,7 @@
         </div>
       </div>
     </div>
+    <a href="https://www.imis.uni-luebeck.de/de/datenschutz" class="privacy-link">Datenschutz</a>
   </template>
   
   <style scoped>
@@ -50,6 +51,15 @@
   .bottom-right {
     position: relative;
     vertical-align: bottom;
+  }
+  .privacy-link{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
   }
   </style>
   

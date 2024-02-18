@@ -16,6 +16,7 @@
           </h1>
         </div>
       </div>
+      <a href="https://www.imis.uni-luebeck.de/de/datenschutz" class="privacy-link">Datenschutz</a>
     </div>
   </template>
   
@@ -29,7 +30,15 @@
     background-size: cover;
     color: white; 
   }
-  
+  .privacy-link{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+  }
   .content {
     text-align: center;
     font-family: 'Bebas Neue', sans-serif;

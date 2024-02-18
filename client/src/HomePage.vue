@@ -18,13 +18,23 @@
   </template>
   
   <style scoped>
-  html body{
-    height: 100%;
-  }
+    html body{
+      height: 100%;
+    }
     .app-container{
       height: 100vh;
       background-color: rgb(108,21,173);
     }
+    .privacy-link{
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+    }
+  
   </style>
   
   <script>

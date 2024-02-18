@@ -17,6 +17,7 @@
 
     </div>
   </div>
+  <a href="https://www.imis.uni-luebeck.de/de/datenschutz" class="privacy-link">Datenschutz</a>
   </template>
   
   <style scoped>
@@ -32,7 +33,15 @@
     background-size: 100%;
   }
 
-
+  .privacy-link{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+  }
   .question {
     padding:5%;
     color: white;
