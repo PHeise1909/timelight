@@ -53,7 +53,7 @@
     import axios from 'axios';
     import AnswerButtons from './answer-buttons.vue';
     import NumericAnswer from './numericAnswer.vue';
-    const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
+    const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS || "141.83.67.193:3500/api";
 
     export default{
       components:{

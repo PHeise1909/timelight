@@ -79,7 +79,7 @@
   
   <script>
   import axios from 'axios';
-  const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
+  const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS || "141.83.67.193:3500/api";
 
   export default {
     props: {

@@ -46,8 +46,8 @@ import Timer from './components/BaseTimer.vue';
 import LandingPage from './components/landingPage.vue'
 import EvaluationDisplay from './components/evaluation-display.vue'
 import axios from 'axios';
-const ws = import.meta.env.VITE_VUE_APP_WS;
-const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS;
+const ws = import.meta.env.VITE_VUE_APP_WS || "ws://141.83.67.193:3500/";
+const backend = import.meta.env.VITE_VUE_APP_BACKEND_ADDRESS || "141.83.67.193:3500/api";
 
 export default {
   components: {
